@@ -8,7 +8,7 @@ public class GreetingUnitTest {
     GreetingStrings greetingStrings = new GreetingStrings() {
         @Override
         public String getWho() {
-            return "Master!";
+            return "Master";
         }
 
         @Override

@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Nice Weather</string>
     <string name="greeting">Good day</string>
-    <string name="who">Master!</string>
+    <string name="who">Master</string>
     <string name="morning">Good morning</string>
     <string name="afternoon">Good afternoon</string>
     <string name="evening">Good evening</string>

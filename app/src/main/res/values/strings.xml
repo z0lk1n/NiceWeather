@@ -6,4 +6,31 @@
     <string name="afternoon">Good afternoon</string>
     <string name="evening">Good evening</string>
     <string name="night">Good night</string>
+    <string name="on_resume">onResume()</string>
+    <string name="first_start">Первый запуск! -</string>
+    <string name="on_create">- onCreate()</string>
+    <string name="on_start">onStart()</string>
+    <string name="on_stop">onStop()</string>
+    <string name="on_destroy">onDestroy()</string>
+    <string name="on_pause">onPause()</string>
+    <string name="second_start">Повторный запуск! -</string>
+    <string name="on_restore_state">- onRestoreInstanceState()</string>
+    <string name="on_save_state">onSaveInstanceState()</string>
+    <string name="tag">Состояние приложения</string>
+    <string name="select_part_of_the_day">Выберите часть дня</string>
+    <string name="ok">OK</string>
+
+    <string-array name="part_of_day">
+        <item>morning</item>
+        <item>afternoon</item>
+        <item>evening</item>
+        <item>night</item>
+    </string-array>
+
+    <string-array name="temperature">
+        <item>0</item>
+        <item>+5</item>
+        <item>-1</item>
+        <item>-8</item>
+    </string-array>
 </resources>

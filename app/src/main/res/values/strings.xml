@@ -6,4 +6,15 @@
     <string name="afternoon">Good afternoon</string>
     <string name="evening">Good evening</string>
     <string name="night">Good night</string>
+    <string name="on_resume">onResume()</string>
+    <string name="first_start">Первый запуск! -</string>
+    <string name="on_create">- onCreate()</string>
+    <string name="on_start">onStart()</string>
+    <string name="on_stop">onStop()</string>
+    <string name="on_destroy">onDestroy()</string>
+    <string name="on_pause">onPause()</string>
+    <string name="second_start">Повторный запуск! -</string>
+    <string name="on_restore_state">- onRestoreInstanceState()</string>
+    <string name="on_save_state">onSaveInstanceState()</string>
+    <string name="tag">Состояние приложения</string>
 </resources>

@@ -10,7 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements GreetingStrings {
-    private static final String TAG = "Состояние приложения";
+    private static final String TAG = MainActivity.class.getSimpleName();
     private TextView textView;
     private Spinner spinner;
 

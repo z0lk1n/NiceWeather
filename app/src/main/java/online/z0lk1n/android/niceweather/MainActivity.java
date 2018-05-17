@@ -3,21 +3,30 @@ package online.z0lk1n.android.niceweather;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements GreetingStrings {
-    private String TAG;
+    private static final String TAG = "Состояние приложения";
+    private TextView textView;
+    private Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        TAG = getString(R.string.tag);
         TextView greeting = findViewById(R.id.greeting);
         BuilderGreetingPhrase greetingPhrase = new BuilderGreetingPhrase(this);
         greeting.setText(greetingPhrase.getGreetingPhrase());
+
+        textView = findViewById(R.id.temperature);
+        Button button = findViewById(R.id.button_show_temperature);
+        button.setOnClickListener(onClickListener);
+        spinner = findViewById(R.id.spinner_for_part_day);
 
         String instanceState;
         if (savedInstanceState == null)
@@ -29,6 +38,16 @@ public class MainActivity extends AppCompatActivity implements GreetingStrings {
         Toast.makeText(getApplicationContext(), textState, Toast.LENGTH_SHORT).show();
         Log.i(TAG, textState);
     }
+
+    private final View.OnClickListener onClickListener = new View.OnClickListener() {
+        @Override
+        public void onClick(View view) {
+            if(view.getId() == R.id.button_show_temperature)    {
+                textView.setText(TemperatureSpec.getTemperature(getApplicationContext(),
+                        spinner.getSelectedItemPosition()));
+            }
+        }
+    };
 
     @Override
     public String getWho() {

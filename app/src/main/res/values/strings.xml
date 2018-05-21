@@ -19,6 +19,16 @@
     <string name="tag">Состояние приложения</string>
     <string name="select_part_of_the_day">Выберите часть дня</string>
     <string name="ok">OK</string>
+    <string name="enter_city">Введите город</string>
+    <string name="select_optional_parameters">Выберите дополнительные параметры отображения</string>
+    <string name="air_humidity">Влажность воздуха</string>
+    <string name="wind_speed">Скорость ветра</string>
+    <string name="pressure">Давление</string>
+    <string name="show_weather">Показать погоду</string>
+    <string name="test_temperature">+5</string>
+    <string name="test_air_humidity">60%</string>
+    <string name="test_wind_speed">5 m/s</string>
+    <string name="test_pressure">755</string>
 
     <string-array name="part_of_day">
         <item>morning</item>

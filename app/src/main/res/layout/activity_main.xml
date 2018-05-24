@@ -5,6 +5,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:background="@drawable/images"
     tools:context="online.z0lk1n.android.niceweather.MainActivity">
 
     <TextView

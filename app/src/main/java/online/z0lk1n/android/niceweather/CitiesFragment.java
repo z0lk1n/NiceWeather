@@ -11,15 +11,14 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import static online.z0lk1n.android.niceweather.CoatOfArmsFragment.PARCEL;
+import static online.z0lk1n.android.niceweather.InfoFragment.PARCEL;
 
 
 public class CitiesFragment extends ListFragment {
 
-    boolean isExistCoatofarms;  // Можно ли расположить рядом фрагмент с гербом
+    boolean isExistParams;
     Parcel currentParcel;
 
-    // При создании фрагмента, укажем его макет
     @Override
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
@@ -27,14 +26,10 @@ public class CitiesFragment extends ListFragment {
         return inflater.inflate(R.layout.fragment_cities, container, false);
     }
 
-    // Активити создана, можно к ней обращаться. Выполним начальные действия
     @Override
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        // Для того, чтобы показать список, надо задействовать адаптер.
-        // Такая конструкция работает для списков, например, ListActivity.
-        // Здесь создаем из ресурсов список городов (из массива)
         ArrayAdapter adapter = ArrayAdapter.createFromResource(getActivity(),
                 R.array.Cities,
                 android.R.layout.simple_list_item_activated_1);
@@ -42,9 +37,9 @@ public class CitiesFragment extends ListFragment {
         setListAdapter(adapter);
 
         // Определение, можно ли будет расположить рядом герб в другом фрагменте
-        View detailsFrame = getActivity().findViewById(R.id.coat_of_arms);
+        View detailsFrame = getActivity().findViewById(R.id.info);
         // getActivity - получить контекст активити, где расположен фрагмент
-        isExistCoatofarms = detailsFrame != null && detailsFrame.getVisibility() == View.VISIBLE;
+        isExistParams = detailsFrame != null && detailsFrame.getVisibility() == View.VISIBLE;
 
         // Если это не повторное создание, то восстановим текущую позицию
         if (savedInstanceState != null) {
@@ -52,13 +47,14 @@ public class CitiesFragment extends ListFragment {
             currentParcel = (Parcel) savedInstanceState.getSerializable("CurrentCity");
         }
         else {
-            currentParcel = new Parcel(0, getResources().getTextArray(R.array.Cities)[0].toString());
+            currentParcel = new Parcel(0, getResources().getTextArray(R.array.Cities)[0].toString(), getResources().getString(R.string.test_wind_speed),
+                    getResources().getString(R.string.test_wind_speed), getResources().getString(R.string.test_air_humidity), getResources().getString(R.string.pressure));
         }
 
         // Если можно нарисовать рядом герб, то сделаем это
-        if (isExistCoatofarms){
+        if (isExistParams){
             getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
-            showCoatOfArms(currentParcel);
+            showInfo(currentParcel);
         }
     }
 
@@ -73,39 +69,40 @@ public class CitiesFragment extends ListFragment {
     @Override
     public void onListItemClick(ListView l, View v, int position, long id) {
         TextView cityNameView = (TextView) v;
-        currentParcel =  new Parcel(position, cityNameView.getText().toString());
-        showCoatOfArms(currentParcel);
+
+        //position only 0
+
+        currentParcel =  new Parcel(0, cityNameView.getText().toString(), getResources().getString(R.string.test_wind_speed),
+                getResources().getString(R.string.test_wind_speed), getResources().getString(R.string.test_air_humidity), getResources().getString(R.string.pressure));
+        showInfo(currentParcel);
     }
 
     // Показать герб. Ecли возможно, то показать рядом со списком,
     // если нет, то открыть второе активити
-    private void showCoatOfArms(Parcel parcel) {
-        if (isExistCoatofarms) {
+    private void showInfo(Parcel parcel) {
+        if (isExistParams) {
             // Выделим текущий элемент списка
-            getListView().setItemChecked( parcel.getImageIndex(), true);
+            getListView().setItemChecked(0, true);
 
             // Проверим, что фрагмент с гербом существует в активити
-            CoatOfArmsFragment detail = (CoatOfArmsFragment)
-                    getFragmentManager().findFragmentById(R.id.coat_of_arms);
+            InfoFragment detail = (InfoFragment)
+                    getFragmentManager().findFragmentById(R.id.info);
             // если есть необходимость, то выведем герб
             if (detail == null || detail.getParcel().getImageIndex() != parcel.getImageIndex()) {
 
                 // Создаем новый фрагмент, с текущей позицией, для вывода герба
-                detail = CoatOfArmsFragment.create(parcel);
+                detail = InfoFragment.create(parcel);
 
-                // Выполняем транзакцию по замене фрагмента
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
-                ft.replace(R.id.coat_of_arms, detail);  // замена фраuмента
+                ft.replace(R.id.info, detail);
                 ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                 ft.commit();
             }
 
         }
         else {
-            // Если нельзя вывести герб рядом, откроем вторую активити
             Intent intent = new Intent();
-            intent.setClass(getActivity(), CoatOfArmsActivity.class);
-            // и передадим туда параметры
+            intent.setClass(getActivity(), InfoActivity.class);
             intent.putExtra(PARCEL, parcel);
             startActivity(intent);
         }

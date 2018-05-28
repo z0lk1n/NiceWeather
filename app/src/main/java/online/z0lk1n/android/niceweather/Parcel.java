@@ -3,12 +3,12 @@ package online.z0lk1n.android.niceweather;
 import java.io.Serializable;
 
 public class Parcel implements Serializable {
-        private int imageIndex;
-        private String cityName;
-        private String temperature;
-        private String windSpeed;
-        private String airHumidity;
-        private String pressure;
+    private int imageIndex;
+    private String cityName;
+    private String temperature;
+    private String windSpeed;
+    private String airHumidity;
+    private String pressure;
 
     public Parcel(int imageIndex, String cityName, String temperature, String windSpeed, String airHumidity, String pressure) {
         this.imageIndex = imageIndex;

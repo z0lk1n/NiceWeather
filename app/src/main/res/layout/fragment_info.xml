@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/cityView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="City"
+        android:textSize="30sp" />
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:srcCompat="@drawable/sun" />
+
+    <TextView
+        android:id="@+id/temperatureView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="temperature"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/windSpeedView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="wind speed"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/airHumidityView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="air humidity"
+        android:textSize="20sp" />
+
+    <TextView
+        android:id="@+id/pressureView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="pressure"
+        android:textSize="20sp" />
+</LinearLayout>

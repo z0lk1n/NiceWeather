@@ -1,83 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:background="@drawable/images"
-    tools:context="online.z0lk1n.android.niceweather.MainActivity">
+    android:orientation="horizontal">
 
-    <TextView
-        android:id="@+id/greeting"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/greeting"
-        android:textSize="20sp"/>
-
-    <TextView
-        android:id="@+id/textview_label"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/select_part_of_the_day"
-        android:textSize="20sp"/>
-
-    <Spinner
-        android:id="@+id/spinner_for_part_day"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:entries="@array/part_of_day"
-        android:textSize="20sp"/>
-
-    <Button
-        android:id="@+id/button_show_temperature"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/ok"
-        android:textSize="20sp"/>
-
-    <TextView
-        android:id="@+id/temperature"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"/>
-
-    <EditText
-        android:id="@+id/editText_enter_city"
+    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:inputType="textPersonName"
-        android:text="@string/enter_city" />
+        android:layout_height="match_parent">
 
-    <TextView
-        android:id="@+id/textView_optional_parameters"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/select_optional_parameters" />
-
-    <CheckBox
-        android:id="@+id/checkBox_air_humidity"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/air_humidity" />
-
-    <CheckBox
-        android:id="@+id/checkBox_wind_speed"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/wind_speed" />
-
-    <CheckBox
-        android:id="@+id/checkBox_pressure"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/pressure" />
-
-    <Button
-        android:id="@+id/button_send_parameters"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/show_weather" />
-
+        <fragment
+            android:id="@+id/cities"
+            android:name="online.z0lk1n.android.niceweather.CitiesFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </FrameLayout>
 </LinearLayout>

@@ -3,15 +3,13 @@ package online.z0lk1n.android.niceweather;
 import java.io.Serializable;
 
 public class Parcel implements Serializable {
-    private int imageIndex;
     private String cityName;
-    private String temperature;
-    private String windSpeed;
-    private String airHumidity;
-    private String pressure;
+    private Boolean temperature;
+    private Boolean windSpeed;
+    private Boolean airHumidity;
+    private Boolean pressure;
 
-    Parcel(int imageIndex, String cityName, String temperature, String windSpeed, String airHumidity, String pressure) {
-        this.imageIndex = imageIndex;
+    Parcel(String cityName, Boolean temperature, Boolean windSpeed, Boolean airHumidity, Boolean pressure) {
         this.cityName = cityName;
         this.temperature = temperature;
         this.windSpeed = windSpeed;
@@ -19,27 +17,23 @@ public class Parcel implements Serializable {
         this.pressure = pressure;
     }
 
-    public int getImageIndex() {
-        return imageIndex;
-    }
-
     public String getCityName() {
         return cityName;
     }
 
-    public String getTemperature() {
+    public Boolean getTemperature() {
         return temperature;
     }
 
-    public String getWindSpeed() {
+    public Boolean getWindSpeed() {
         return windSpeed;
     }
 
-    public String getAirHumidity() {
+    public Boolean getAirHumidity() {
         return airHumidity;
     }
 
-    public String getPressure() {
+    public Boolean getPressure() {
         return pressure;
     }
 }

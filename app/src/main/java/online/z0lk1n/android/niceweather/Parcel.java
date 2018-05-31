@@ -10,7 +10,7 @@ public class Parcel implements Serializable {
     private String airHumidity;
     private String pressure;
 
-    public Parcel(int imageIndex, String cityName, String temperature, String windSpeed, String airHumidity, String pressure) {
+    Parcel(int imageIndex, String cityName, String temperature, String windSpeed, String airHumidity, String pressure) {
         this.imageIndex = imageIndex;
         this.cityName = cityName;
         this.temperature = temperature;

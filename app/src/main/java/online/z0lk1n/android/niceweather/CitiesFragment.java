@@ -11,7 +11,7 @@ import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import static online.z0lk1n.android.niceweather.InfoFragment.PARCEL;
+import static online.z0lk1n.android.niceweather.DetailedWeatherFragment.PARCEL;
 
 
 public class CitiesFragment extends ListFragment {
@@ -85,13 +85,13 @@ public class CitiesFragment extends ListFragment {
             getListView().setItemChecked(0, true);
 
             // Проверим, что фрагмент с гербом существует в активити
-            InfoFragment detail = (InfoFragment)
+            DetailedWeatherFragment detail = (DetailedWeatherFragment)
                     getFragmentManager().findFragmentById(R.id.info);
             // если есть необходимость, то выведем герб
             if (detail == null || detail.getParcel().getImageIndex() != parcel.getImageIndex()) {
 
                 // Создаем новый фрагмент, с текущей позицией, для вывода герба
-                detail = InfoFragment.create(parcel);
+                detail = DetailedWeatherFragment.create(parcel);
 
                 FragmentTransaction ft = getFragmentManager().beginTransaction();
                 ft.replace(R.id.info, detail);
@@ -102,7 +102,7 @@ public class CitiesFragment extends ListFragment {
         }
         else {
             Intent intent = new Intent();
-            intent.setClass(getActivity(), InfoActivity.class);
+            intent.setClass(getActivity(), DetailedWeatherActivity.class);
             intent.putExtra(PARCEL, parcel);
             startActivity(intent);
         }

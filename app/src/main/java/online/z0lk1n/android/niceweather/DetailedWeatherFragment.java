@@ -9,12 +9,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-public class InfoFragment extends Fragment {
+public class DetailedWeatherFragment extends Fragment {
 
     public static final String PARCEL = "parcel";
 
-    public static InfoFragment create(Parcel parcel) {
-        InfoFragment f = new InfoFragment();    
+    public static DetailedWeatherFragment create(Parcel parcel) {
+        DetailedWeatherFragment f = new DetailedWeatherFragment();
 
         Bundle args = new Bundle();
         args.putSerializable(PARCEL, parcel);
@@ -35,7 +35,7 @@ public class InfoFragment extends Fragment {
         ImageView weatherImage = layout.findViewById(R.id.imageView);
         TextView cityNameView = layout.findViewById(R.id.cityView);
 
-        TypedArray imgs = getResources().obtainTypedArray(R.array.weather_imgs);
+        TypedArray imgs = getResources().obtainTypedArray(R.array.weather_images);
         Parcel parcel = getParcel();
 
 //        weatherImage.setImageResource(imgs.getResourceId(parcel.getImageIndex(), -1));

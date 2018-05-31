@@ -5,7 +5,7 @@ import android.os.Bundle;
 
 import static android.content.res.Configuration.ORIENTATION_LANDSCAPE;
 
-public class InfoActivity extends Activity {
+public class DetailedWeatherActivity extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -16,7 +16,7 @@ public class InfoActivity extends Activity {
         }
 
         if (savedInstanceState == null) {
-            InfoFragment details = new InfoFragment();
+            DetailedWeatherFragment details = new DetailedWeatherFragment();
             details.setArguments(getIntent().getExtras());
             getFragmentManager().beginTransaction().add(android.R.id.content, details).commit();
         }

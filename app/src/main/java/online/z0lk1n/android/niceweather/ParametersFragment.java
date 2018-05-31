@@ -25,7 +25,7 @@ public class ParametersFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater,
                              ViewGroup container,
                              Bundle savedInstanceState) {
-        View fragmentView = inflater.inflate(R.layout.fragment_detailed_weather, container, false);
+        View fragmentView = inflater.inflate(R.layout.fragment_parameters, container, false);
 
         cityTxt = fragmentView.findViewById(R.id.edTxt_city);
         temperatureChkBox = fragmentView.findViewById(R.id.chkBox_temperature);
@@ -65,7 +65,7 @@ public class ParametersFragment extends Fragment {
     }
 
     private void createParcel()   {
-        currentCity = new Parcel(cityTxt.toString(), temperatureChkBox.isChecked(),
+        currentCity = new Parcel(cityTxt.getText().toString().trim(), temperatureChkBox.isChecked(),
                 windSpeedChkBox.isChecked(), airHumidityChkBox.isChecked(), pressureChkBox.isChecked());
     }
 }

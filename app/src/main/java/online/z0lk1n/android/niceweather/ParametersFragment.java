@@ -56,15 +56,10 @@ public class ParametersFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 FragmentNavigator fragmentNavigator = (FragmentNavigator) that;
+                createParcel();
                 fragmentNavigator.startDetailedWeatherFragment(currentCity);
             }
         });
-
-        if (savedInstanceState != null) {
-            currentCity = (Parcel) savedInstanceState.getSerializable("CurrentCity");
-        } else {
-            createParcel();
-        }
 
         return fragmentView;
     }
@@ -73,11 +68,4 @@ public class ParametersFragment extends Fragment {
         currentCity = new Parcel(cityTxt.toString(), temperatureChkBox.isChecked(),
                 windSpeedChkBox.isChecked(), airHumidityChkBox.isChecked(), pressureChkBox.isChecked());
     }
-
-    @Override
-    public void onSaveInstanceState(Bundle outState) {
-        super.onSaveInstanceState(outState);
-        outState.putSerializable("CurrentCity", currentCity);
-    }
-
 }

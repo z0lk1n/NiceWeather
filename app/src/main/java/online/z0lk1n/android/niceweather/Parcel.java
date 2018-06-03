@@ -17,6 +17,7 @@ public class Parcel implements Serializable {
         this.pressure = pressure;
     }
 
+
     public String getCityName() {
         return cityName;
     }

@@ -1,51 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:layout_margin="@dimen/main_margin"
     android:orientation="vertical">
 
-    <android.support.v7.widget.AppCompatTextView
+    <TextView
         android:id="@+id/txtView_label"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:text="@string/select_parameters" />
 
-    <android.support.v7.widget.AppCompatEditText
-        android:id="@+id/edTxt_city"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="@string/city"
-        android:inputType="text" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-    <android.support.v7.widget.AppCompatCheckBox
+        <ImageButton
+            android:id="@+id/imgBtn_cities_list"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            app:srcCompat="?android:attr/actionModeFindDrawable"
+            tools:targetApi="lollipop" />
+
+        <ImageButton
+            android:id="@+id/imgBtn_add_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_gravity="center"
+            app:srcCompat="@android:drawable/ic_input_add" />
+
+        <EditText
+            android:id="@+id/edTxt_city"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:ems="10"
+            android:hint="@string/city"
+            android:inputType="text" />
+    </LinearLayout>
+
+    <CheckBox
         android:id="@+id/chkBox_temperature"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:checked="true"
         android:text="@string/temperature" />
 
-    <android.support.v7.widget.AppCompatCheckBox
+    <CheckBox
         android:id="@+id/chkBox_wind_speed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/wind_speed" />
 
-    <android.support.v7.widget.AppCompatCheckBox
+    <CheckBox
         android:id="@+id/chkBox_air_humidity"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/air_humidity" />
 
-    <android.support.v7.widget.AppCompatCheckBox
+    <CheckBox
         android:id="@+id/chkBox_pressure"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/pressure" />
 
-    <android.support.v7.widget.AppCompatButton
+    <Button
         android:id="@+id/btn_show_weather"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

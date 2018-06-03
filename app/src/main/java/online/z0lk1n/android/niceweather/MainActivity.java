@@ -7,6 +7,8 @@ import android.support.v7.app.AppCompatActivity;
 public class MainActivity extends AppCompatActivity implements FragmentNavigator {
     private ParametersFragment parametersFragment;
     private DetailedWeatherFragment detailedWeatherActivity;
+    private CitiesListFragment citiesListFragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -14,6 +16,7 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigator
 
         parametersFragment = new ParametersFragment();
         detailedWeatherActivity = new DetailedWeatherFragment();
+        citiesListFragment = new CitiesListFragment();
 
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.fragment_container, parametersFragment);
@@ -28,5 +31,23 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigator
         fragmentTransaction.addToBackStack("");
         fragmentTransaction.commit();
         detailedWeatherActivity.setParcel(parcel);
+    }
+
+    @Override
+    public void startCitiesListFragment() {
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.remove(parametersFragment);
+        fragmentTransaction.add(R.id.fragment_container, citiesListFragment);
+        fragmentTransaction.addToBackStack("");
+        fragmentTransaction.commit();
+    }
+
+    @Override
+    public void startParametersFragment(String city) {
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.remove(citiesListFragment);
+        fragmentTransaction.replace(R.id.fragment_container, parametersFragment);
+        fragmentTransaction.commit();
+        parametersFragment.setCity(city);
     }
 }

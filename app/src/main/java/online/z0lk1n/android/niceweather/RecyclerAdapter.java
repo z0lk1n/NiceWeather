@@ -49,6 +49,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                     if (itemClickListener != null) {
                         itemClickListener.onItemClick(view, getAdapterPosition());
                     }
+                    notifyItemChanged(getAdapterPosition());
                 }
             });
         }

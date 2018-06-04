@@ -28,6 +28,7 @@ public class DetailedWeatherFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_detailed_weather, container, false);
+        setRetainInstance(true);
 
         cityView = layout.findViewById(R.id.txtView_city);
         weatherImage = layout.findViewById(R.id.imgView_weather_image);

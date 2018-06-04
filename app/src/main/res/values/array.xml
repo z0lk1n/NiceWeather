@@ -3,25 +3,25 @@
 
     <integer-array name="weather_images">
         <item>@drawable/clear</item>
-        <!--<item>@drawable/sun_and_rain</item>-->
-        <!--<item>@drawable/rain</item>-->
-        <!--<item>@drawable/night</item>-->
-        <!--<item>@drawable/full_moon</item>-->
-        <!--<item>@drawable/overcast</item>-->
-        <!--<item>@drawable/almost_clear</item>-->
-        <!--<item>@drawable/scattered</item>-->
-        <!--<item>@drawable/snow</item>-->
-        <!--<item>@drawable/snow_and_rain</item>-->
-        <!--<item>@drawable/thunders</item>-->
-        <!--<item>@drawable/snow_storm</item>-->
-        <!--<item>@drawable/windy_clouds</item>-->
-        <!--<item>@drawable/tornado</item>-->
-        <!--<item>@drawable/heavy_rain</item>-->
-        <!--<item>@drawable/medium_rain</item>-->
-        <!--<item>@drawable/mist</item>-->
-        <!--<item>@drawable/smoke</item>-->
-        <!--<item>@drawable/windy</item>-->
-        <!--<item>@drawable/windy_clear</item>-->
+        <item>@drawable/sun_and_rain</item>
+        <item>@drawable/rain</item>
+        <item>@drawable/night</item>
+        <item>@drawable/full_moon</item>
+        <item>@drawable/overcast</item>
+        <item>@drawable/almost_clear</item>
+        <item>@drawable/scattered</item>
+        <item>@drawable/snow</item>
+        <item>@drawable/snow_and_rain</item>
+        <item>@drawable/thunders</item>
+        <item>@drawable/snow_storm</item>
+        <item>@drawable/windy_clouds</item>
+        <item>@drawable/tornado</item>
+        <item>@drawable/heavy_rain</item>
+        <item>@drawable/medium_rain</item>
+        <item>@drawable/mist</item>
+        <item>@drawable/smoke</item>
+        <item>@drawable/windy</item>
+        <item>@drawable/windy_clear</item>
     </integer-array>
 
 </resources>

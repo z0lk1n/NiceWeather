@@ -12,9 +12,16 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 public class CitiesListFragment extends Fragment {
-    public static final String CITY = "city";
-    private  String[] city = {"Nizhnevartovsk", "Moscow", "Saint Petersburg", "Sochi", "Omsk"};
+    public static final String CITY = "cities";
+    private List<String> cities = new ArrayList<String>(Arrays.asList(
+            "Nizhnevartovsk", "Moscow", "Saint Petersburg", "Sochi", "Omsk"));
+    private String city = "";
+    private RecyclerAdapter adapter;
 
     @Nullable
     @Override
@@ -24,12 +31,10 @@ public class CitiesListFragment extends Fragment {
 
         RecyclerView recyclerView = fragmentView.findViewById(R.id.recycler_view);
 
-        recyclerView.setHasFixedSize(true);
-
         LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
         recyclerView.setLayoutManager(layoutManager);
 
-        RecyclerAdapter adapter = new RecyclerAdapter(city);
+        adapter = new RecyclerAdapter(cities);
         recyclerView.setAdapter(adapter);
 
         final Activity that = getActivity();
@@ -46,5 +51,19 @@ public class CitiesListFragment extends Fragment {
         });
 
         return fragmentView;
+    }
+
+    @Override
+    public void onStart() {
+        super.onStart();
+        if(!city.isEmpty())    {
+            cities.add(0, city);
+            adapter.setNewArray(cities);
+            city = "";
+        }
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 }

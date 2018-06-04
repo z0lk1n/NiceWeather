@@ -29,7 +29,6 @@ public class ParametersFragment extends Fragment {
                              ViewGroup container,
                              Bundle savedInstanceState) {
         View fragmentView = inflater.inflate(R.layout.fragment_parameters, container, false);
-        setRetainInstance(true);
 
         cityTxt = fragmentView.findViewById(R.id.edTxt_city);
         temperatureChkBox = fragmentView.findViewById(R.id.chkBox_temperature);
@@ -79,7 +78,10 @@ public class ParametersFragment extends Fragment {
         addCityBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                if(!cityTxt.getText().toString().trim().isEmpty())    {
+                    FragmentNavigator fragmentNavigator = (FragmentNavigator) that;
+                    fragmentNavigator.startCitiesListFragment(cityTxt.getText().toString().trim());
+                }
             }
         });
 

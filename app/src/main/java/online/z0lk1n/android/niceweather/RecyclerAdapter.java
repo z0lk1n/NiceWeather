@@ -6,11 +6,13 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import java.util.List;
+
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
-    private String[] data;
+    private List<String> data;
     private OnItemClickListener itemClickListener;
 
-    public RecyclerAdapter(String[] data) {
+    public RecyclerAdapter(List<String> data) {
         this.data = data;
     }
 
@@ -22,12 +24,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(RecyclerAdapter.ViewHolder holder, int position) {
-        holder.textView.setText(data[position]);
+        holder.textView.setText(data.get(position));
     }
 
     @Override
     public int getItemCount() {
-        return data.length;
+        return data.size();
     }
 
     public interface OnItemClickListener {
@@ -56,7 +58,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         this.itemClickListener = itemClickListener;
     }
 
-    public void setNewArray(String[] data)  {
+    public void setNewArray(List<String> data)  {
         this.data = data;
         notifyDataSetChanged();
     }

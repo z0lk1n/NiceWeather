@@ -43,6 +43,16 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigator
     }
 
     @Override
+    public void startCitiesListFragment(String city) {
+        FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
+        fragmentTransaction.remove(parametersFragment);
+        fragmentTransaction.add(R.id.fragment_container, citiesListFragment);
+        fragmentTransaction.addToBackStack("");
+        fragmentTransaction.commit();
+        citiesListFragment.setCity(city);
+    }
+
+    @Override
     public void startParametersFragment(String city) {
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.remove(citiesListFragment);

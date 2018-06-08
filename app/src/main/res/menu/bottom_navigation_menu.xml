@@ -2,29 +2,19 @@
 <menu xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <item android:id="@+id/item1"
-        android:title="item1"
+    <item android:id="@+id/cities_list"
+        android:title="@string/cities_list"
         android:icon="@drawable/air_humidity"
         app:showAsAction="ifRoom|withText" />
 
-    <group android:id="@+id/group">
-        <item android:id="@+id/group_item1"
-            android:onClick="onGroupItemClick"
-            android:title="group_item1"
-            android:icon="@drawable/air_humidity" />
-        <item android:id="@+id/group_item2"
-            android:onClick="onGroupItemClick"
-            android:title="group_item2"
-            android:icon="@drawable/temperature" />
-    </group>
+    <item android:id="@+id/detailed_weather"
+        android:title="@string/detailed_weather"
+        android:icon="@drawable/temperature"
+        app:showAsAction="ifRoom|withText" />
 
-    <item android:id="@+id/submenu"
-        android:title="submenu_title"
-        app:showAsAction="ifRoom|withText" >
-        <menu>
-            <item android:id="@+id/submenu_item1"
-                android:title="submenu_item1" />
-        </menu>
-    </item>
+    <item android:id="@+id/settings"
+        android:title="@string/settings"
+        android:icon="@drawable/air_humidity"
+        app:showAsAction="ifRoom|withText" />
 
 </menu>

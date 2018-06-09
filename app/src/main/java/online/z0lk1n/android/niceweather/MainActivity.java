@@ -2,9 +2,13 @@ package online.z0lk1n.android.niceweather;
 
 import android.app.FragmentTransaction;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
+import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
+import android.view.MenuItem;
 
 public class MainActivity extends AppCompatActivity implements FragmentNavigator {
+
     private ParametersFragment parametersFragment;
     private DetailedWeatherFragment detailedWeatherActivity;
     private CitiesListFragment citiesListFragment;
@@ -17,10 +21,30 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigator
         parametersFragment = new ParametersFragment();
         detailedWeatherActivity = new DetailedWeatherFragment();
         citiesListFragment = new CitiesListFragment();
+        BottomNavigationView bottomNavigationView = findViewById(R.id.bottom_navigation);
 
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.add(R.id.fragment_container, parametersFragment);
         fragmentTransaction.commit();
+
+        bottomNavigationView.setOnNavigationItemSelectedListener(
+                new BottomNavigationView.OnNavigationItemSelectedListener() {
+                    @Override
+                    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+                        switch (item.getItemId()) {
+                            case R.id.detailed_weather:
+//                                Parcel parcel = new Parcel();
+//                                startDetailedWeatherFragment(parcel);
+                                break;
+                            case R.id.cities_list:
+                                startCitiesListFragment();
+                                break;
+                            case R.id.settings:
+                                break;
+                        }
+                        return true;
+                    }
+                });
     }
 
     @Override

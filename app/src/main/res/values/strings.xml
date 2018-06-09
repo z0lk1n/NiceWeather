@@ -23,7 +23,7 @@
     <string name="select_parameters">Select parameters</string>
     <string name="empty"> </string>
     <string name="settings">settings</string>
-    <string name="detailed_weather">detailed weather</string>
+    <string name="detail_weather">detail weather</string>
     <string name="cities_list">cities list</string>
 
     <string-array name="part_of_day">

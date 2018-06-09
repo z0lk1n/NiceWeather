@@ -1,4 +1,4 @@
-package online.z0lk1n.android.niceweather;
+package online.z0lk1n.android.niceweather.fragments;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -13,9 +13,10 @@ import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import online.z0lk1n.android.niceweather.R;
+import online.z0lk1n.android.niceweather.util.Parcel;
+
 public class ParametersFragment extends Fragment {
-    public static final String PARCEL = "CurrentCity";
-    public static final String CITY = "city";
     private TextView cityTxt;
     private CheckBox temperatureChkBox;
     private CheckBox windSpeedChkBox;

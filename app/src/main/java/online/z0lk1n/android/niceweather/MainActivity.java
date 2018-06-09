@@ -7,6 +7,12 @@ import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import online.z0lk1n.android.niceweather.fragments.CitiesListFragment;
+import online.z0lk1n.android.niceweather.fragments.DetailedWeatherFragment;
+import online.z0lk1n.android.niceweather.fragments.FragmentNavigator;
+import online.z0lk1n.android.niceweather.fragments.ParametersFragment;
+import online.z0lk1n.android.niceweather.util.Parcel;
+
 public class MainActivity extends AppCompatActivity implements FragmentNavigator {
 
     private ParametersFragment parametersFragment;
@@ -59,6 +65,9 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigator
 
     @Override
     public void startCitiesListFragment() {
+        if(citiesListFragment.isAdded())   {
+            return;
+        }
         FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
         fragmentTransaction.remove(parametersFragment);
         fragmentTransaction.add(R.id.fragment_container, citiesListFragment);

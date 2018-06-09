@@ -1,4 +1,4 @@
-package online.z0lk1n.android.niceweather;
+package online.z0lk1n.android.niceweather.util;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -7,6 +7,8 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import java.util.List;
+
+import online.z0lk1n.android.niceweather.R;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
     private List<String> data;

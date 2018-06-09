@@ -1,4 +1,4 @@
-package online.z0lk1n.android.niceweather;
+package online.z0lk1n.android.niceweather.fragments;
 
 import android.app.Activity;
 import android.app.Fragment;
@@ -15,6 +15,9 @@ import android.widget.Toast;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+
+import online.z0lk1n.android.niceweather.R;
+import online.z0lk1n.android.niceweather.util.RecyclerAdapter;
 
 public class CitiesListFragment extends Fragment {
     public static final String CITY = "cities";

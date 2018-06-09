@@ -1,4 +1,4 @@
-package online.z0lk1n.android.niceweather;
+package online.z0lk1n.android.niceweather.util;
 
 import java.io.Serializable;
 
@@ -9,7 +9,7 @@ public class Parcel implements Serializable {
     private Boolean airHumidity;
     private Boolean pressure;
 
-    Parcel(String cityName, Boolean temperature, Boolean windSpeed, Boolean airHumidity, Boolean pressure) {
+    public Parcel(String cityName, Boolean temperature, Boolean windSpeed, Boolean airHumidity, Boolean pressure) {
         this.cityName = cityName;
         this.temperature = temperature;
         this.windSpeed = windSpeed;

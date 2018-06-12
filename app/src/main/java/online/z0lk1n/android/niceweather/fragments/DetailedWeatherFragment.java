@@ -1,11 +1,8 @@
 package online.z0lk1n.android.niceweather.fragments;
 
 import android.app.Fragment;
-import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.content.res.TypedArray;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,11 +13,19 @@ import online.z0lk1n.android.niceweather.R;
 import online.z0lk1n.android.niceweather.util.Parcel;
 
 public class DetailedWeatherFragment extends Fragment {
-    boolean isExistAnotherFragment;
+    public static final String INDEX = "index";
     private Parcel parcel;
 
     public void setParcel(Parcel parcel) {
         this.parcel = parcel;
+    }
+
+    public static DetailedWeatherFragment create(int index) {
+        DetailedWeatherFragment fragment = new DetailedWeatherFragment();
+        Bundle args = new Bundle();
+        args.putInt(INDEX, index);
+        fragment.setArguments(args);
+        return fragment;
     }
 
     @Override
@@ -37,8 +42,7 @@ public class DetailedWeatherFragment extends Fragment {
 
         TypedArray weatherImages = getResources().obtainTypedArray(R.array.weather_images);
 
-//        cityView.setText(parcel.getCityName());
-        cityView.setText("TEST");
+        cityView.setText(parcel.getCityName());
         weatherImage.setImageResource(weatherImages.getResourceId(0, -1));
         if (parcel.getTemperature()) {
             temperatureView.setText(R.string.test_temperature);
@@ -55,29 +59,7 @@ public class DetailedWeatherFragment extends Fragment {
         return layout;
     }
 
-    @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        View anotherFragment = getActivity().findViewById(R.id.fragment_container);
-        isExistAnotherFragment = anotherFragment != null && anotherFragment.getVisibility() == View.VISIBLE;
-        if (isExistAnotherFragment) {
-            showAnotherFragmen();
-        }
-    }
-
-    private void showAnotherFragmen(Fragment fragment)   {
-        if(isExistAnotherFragment)  {
-            Fragment fragmentContainer = getFragmentManager().findFragmentById(R.id.fragment_container);
-
-            FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-            fragmentTransaction.replace(R.id.fragment_container, fragment);
-            fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-            fragmentTransaction.commit();
-        } else {
-            Intent intent = new Intent();
-            intent.setClass(getActivity(), fragment.getClass());
-            startActivity(intent);
-        }
+    public int getIndex()   {
+        return getArguments().getInt(INDEX, 0);
     }
 }

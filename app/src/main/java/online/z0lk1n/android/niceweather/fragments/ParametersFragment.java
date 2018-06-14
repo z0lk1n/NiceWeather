@@ -22,7 +22,6 @@ public class ParametersFragment extends Fragment {
     private CheckBox windSpeedChkBox;
     private CheckBox airHumidityChkBox;
     private CheckBox pressureChkBox;
-    private Parcel currentCity;
     private String city;
 
     @Override
@@ -62,9 +61,7 @@ public class ParametersFragment extends Fragment {
         showWeatherBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentNavigator fragmentNavigator = (FragmentNavigator) that;
-                createParcel();
-                fragmentNavigator.startDetailedWeatherFragment(currentCity);
+
             }
         });
 
@@ -89,10 +86,6 @@ public class ParametersFragment extends Fragment {
         return fragmentView;
     }
 
-    private void createParcel()   {
-        currentCity = new Parcel(cityTxt.getText().toString().trim(), temperatureChkBox.isChecked(),
-                windSpeedChkBox.isChecked(), airHumidityChkBox.isChecked(), pressureChkBox.isChecked());
-    }
 
     public void setCity(String city) {
         this.city = city;

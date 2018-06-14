@@ -1,8 +1,10 @@
 package online.z0lk1n.android.niceweather.fragments;
 
 import android.app.Fragment;
+import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -33,6 +35,12 @@ public class DetailWeatherFragment extends Fragment {
         TextView windSpeedView = layout.findViewById(R.id.txtView_wind_speed);
         TextView airHumidityView = layout.findViewById(R.id.txtView_air_humidity);
         TextView pressureView = layout.findViewById(R.id.txtView_pressure);
+
+
+        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
+        boolean isWindSpeed = preferences.getBoolean(SettingsFragment.KEY_PREF_WIND_SPEED, false);
+        boolean isAirHumidity = preferences.getBoolean(SettingsFragment.KEY_PREF_AIR_HUMIDITY, false);
+        boolean isPressure = preferences.getBoolean(SettingsFragment.KEY_PREF_PRESSURE, false);
 
         TypedArray weatherImages = getResources().obtainTypedArray(R.array.weather_images);
 

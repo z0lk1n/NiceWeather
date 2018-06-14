@@ -10,20 +10,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import online.z0lk1n.android.niceweather.R;
-import online.z0lk1n.android.niceweather.util.Parcel;
 
-public class DetailedWeatherFragment extends Fragment {
-    public static final String INDEX = "index";
-    private Parcel parcel;
+public class DetailWeatherFragment extends Fragment {
+    public static final String CITY = "CurrentCity";
 
-    public void setParcel(Parcel parcel) {
-        this.parcel = parcel;
-    }
-
-    public static DetailedWeatherFragment create(int index) {
-        DetailedWeatherFragment fragment = new DetailedWeatherFragment();
+    public static DetailWeatherFragment create(String city) {
+        DetailWeatherFragment fragment = new DetailWeatherFragment();
         Bundle args = new Bundle();
-        args.putInt(INDEX, index);
+        args.putString(CITY, city);
         fragment.setArguments(args);
         return fragment;
     }
@@ -31,7 +25,7 @@ public class DetailedWeatherFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View layout = inflater.inflate(R.layout.fragment_detailed_weather, container, false);
+        View layout = inflater.inflate(R.layout.fragment_detail_weather, container, false);
 
         TextView cityView = layout.findViewById(R.id.txtView_city);
         ImageView weatherImage = layout.findViewById(R.id.imgView_weather_image);
@@ -42,24 +36,16 @@ public class DetailedWeatherFragment extends Fragment {
 
         TypedArray weatherImages = getResources().obtainTypedArray(R.array.weather_images);
 
-        cityView.setText(parcel.getCityName());
+        cityView.setText(getArguments().getString(CITY));
         weatherImage.setImageResource(weatherImages.getResourceId(0, -1));
-        if (parcel.getTemperature()) {
-            temperatureView.setText(R.string.test_temperature);
-        }
-        if (parcel.getWindSpeed()) {
-            windSpeedView.setText(R.string.test_wind_speed);
-        }
-        if (parcel.getAirHumidity()) {
-            airHumidityView.setText(R.string.test_air_humidity);
-        }
-        if (parcel.getPressure()) {
-            pressureView.setText(R.string.pressure);
-        }
+        temperatureView.setText(R.string.test_temperature);
+        windSpeedView.setText(R.string.test_wind_speed);
+        airHumidityView.setText(R.string.test_air_humidity);
+        pressureView.setText(R.string.pressure);
         return layout;
     }
 
-    public int getIndex()   {
-        return getArguments().getInt(INDEX, 0);
+    public String getCity() {
+        return getArguments().getString(CITY);
     }
 }

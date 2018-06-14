@@ -11,77 +11,57 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
-
+import online.z0lk1n.android.niceweather.DetailWeatherActivity;
 import online.z0lk1n.android.niceweather.R;
+import online.z0lk1n.android.niceweather.util.CitiesList;
 import online.z0lk1n.android.niceweather.util.RecyclerAdapter;
 
 public class CitiesListFragment extends Fragment {
     public static final String CITY = "CurrentCity";
-    private List<String> cities = new ArrayList<String>(Arrays.asList(
-            "Nizhnevartovsk", "Moscow", "Saint Petersburg", "Sochi", "Omsk"));
-    private String city = "";
-    boolean isExistAnotherFragment;
+    private RecyclerView recyclerView;
+    private CitiesList citiesList;
+    private boolean isExistAnotherFragment;
     int currentPosition = 0;
-    private RecyclerAdapter adapter;
 
     @Nullable
     @Override
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
         View fragmentView = inflater.inflate(R.layout.fragment_cities_list, container, false);
-
-        RecyclerView recyclerView = fragmentView.findViewById(R.id.recycler_view);
-
-        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
-        recyclerView.setLayoutManager(layoutManager);
-
-        adapter = new RecyclerAdapter(cities);
-        recyclerView.setAdapter(adapter);
-
-//        final Activity that = getActivity();
-        adapter.SetOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(View view, int position) {
-                currentPosition = position;
-//                String city = ((TextView) view).getText().toString();
-//
-//                Toast.makeText(that, city, Toast.LENGTH_SHORT).show();
-//                FragmentNavigator fragmentNavigator = (FragmentNavigator) that;
-//                fragmentNavigator.startParametersFragment(city);
-
-                showAnotherFragmen();
-            }
-        });
-
+        recyclerView = fragmentView.findViewById(R.id.recycler_view);
         return fragmentView;
     }
 
-    @Override
-    public void onStart() {
-        super.onStart();
-//        if(!city.isEmpty())    {
-//            cities.add(0, city);
-//            adapter.setNewArray(cities);
-//            city = "";
-//        }
-    }
 
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        View detailsWeather = getActivity().findViewById(R.id.detailed_weather);
+        LinearLayoutManager layoutManager = new LinearLayoutManager(getActivity());
+        recyclerView.setLayoutManager(layoutManager);
+
+        citiesList = new CitiesList();
+
+        RecyclerAdapter adapter = new RecyclerAdapter(citiesList.getCities());
+        recyclerView.setAdapter(adapter);
+
+        adapter.SetOnItemClickListener(new RecyclerAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(View view, int position) {
+                currentPosition = position;
+                showAnotherFragment();
+            }
+        });
+
+        View detailsWeather = getActivity().findViewById(R.id.detail_weather);
         isExistAnotherFragment = detailsWeather != null && detailsWeather.getVisibility() == View.VISIBLE;
 
-        if(savedInstanceState != null)  {
+        if (savedInstanceState != null) {
             currentPosition = savedInstanceState.getInt(CITY, 0);
         }
 
         if (isExistAnotherFragment) {
-            showAnotherFragmen();
+            showAnotherFragment();
         }
     }
 
@@ -91,28 +71,30 @@ public class CitiesListFragment extends Fragment {
         outState.putInt(CITY, currentPosition);
     }
 
-    private void showAnotherFragmen() {
-        if (isExistAnotherFragment) {
-            DetailedWeatherFragment fragment =
-                    (DetailedWeatherFragment)getFragmentManager().findFragmentById(R.id.detailed_weather);
+    private void showAnotherFragment() {
+        String city = citiesList.getCities().get(currentPosition);
 
-            if(fragment == null || fragment.getIndex() != currentPosition)    {
-                fragment = DetailedWeatherFragment.create(currentPosition);
+        if (isExistAnotherFragment) {
+            DetailWeatherFragment fragment =
+                    (DetailWeatherFragment) getFragmentManager().findFragmentById(R.id.detail_weather);
+
+            if (fragment == null || !city.equals(fragment.getCity())) {
+                fragment = DetailWeatherFragment.create(city);
 
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, fragment);
+                fragmentTransaction.replace(R.id.detail_weather, fragment);
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                 fragmentTransaction.commit();
             }
         } else {
             Intent intent = new Intent();
-            intent.setClass(getActivity(), DetailedWeatherFragment.class);
-            intent.putExtra(DetailedWeatherFragment.INDEX, currentPosition);
+            intent.setClass(getActivity(), DetailWeatherActivity.class);
+            intent.putExtra(CITY, city);
             startActivity(intent);
         }
     }
 
     public void setCity(String city) {
-        this.city = city;
+        this.citiesList.setCity(city);
     }
 }

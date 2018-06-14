@@ -13,8 +13,8 @@ import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.TextView;
 
+import online.z0lk1n.android.niceweather.FragmentNavigator;
 import online.z0lk1n.android.niceweather.R;
-import online.z0lk1n.android.niceweather.util.Parcel;
 
 public class ParametersFragment extends Fragment {
     private TextView cityTxt;

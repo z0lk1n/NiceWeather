@@ -2,20 +2,28 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="horizontal" >
+    android:layout_height="match_parent">
 
-    <fragment class="online.z0lk1n.android.niceweather.fragments.DetailedWeatherFragment"
-        android:id="@+id/cities_list"
-        android:layout_weight="1"
-        android:layout_width="0px"
-        android:layout_height="match_parent"/>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal">
 
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/detailed_weather"
-        android:layout_weight="1"
-        android:layout_width="0px"
-        android:layout_height="match_parent" />
+        <fragment
+            android:id="@+id/cities_list"
+            class="online.z0lk1n.android.niceweather.fragments.CitiesListFragment"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1" />
+
+        <FrameLayout
+            android:id="@+id/detail_weather"
+            android:layout_width="0px"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:background="?android:attr/detailsElementBackground" />
+    </LinearLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/bottom_navigation"
@@ -26,5 +34,4 @@
         app:itemIconTint="@drawable/bottom_navigation_colors"
         app:itemTextColor="@drawable/bottom_navigation_colors"
         app:menu="@menu/bottom_navigation_menu" />
-
 </FrameLayout>

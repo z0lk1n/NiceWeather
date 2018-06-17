@@ -3,5 +3,16 @@
     <color name="colorPrimary">#3F51B5</color>
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
+
     <color name="colorWhite">#FFFFFF</color>
+    <color name="colorBlack">#000000</color>
+
+    <color name="colorBeardOfAbdelKerim">#D6D5D5</color>
+    <color name="colorThisSilver">#C0C0C0</color>
+    <color name="colorGray">#8B8A8A</color>
+    <color name="colorDarkGray">#363636</color>
+
+    <color name="colorThisRed">#FF0000</color>
+    <color name="colorBrighterAlizarinRed">#F93133</color>
+    <color name="colorDarkerThanAlizarinRed">#CC2829</color>
 </resources>

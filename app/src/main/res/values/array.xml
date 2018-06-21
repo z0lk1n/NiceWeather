@@ -2,26 +2,21 @@
 <resources>
 
     <integer-array name="weather_images">
-        <item>@drawable/clear</item>
-        <item>@drawable/sun_and_rain</item>
-        <item>@drawable/rain</item>
-        <item>@drawable/night</item>
-        <item>@drawable/full_moon</item>
-        <item>@drawable/overcast</item>
-        <item>@drawable/almost_clear</item>
-        <item>@drawable/scattered</item>
-        <item>@drawable/snow</item>
-        <item>@drawable/snow_and_rain</item>
-        <item>@drawable/thunders</item>
-        <item>@drawable/snow_storm</item>
-        <item>@drawable/windy_clouds</item>
-        <item>@drawable/tornado</item>
-        <item>@drawable/heavy_rain</item>
-        <item>@drawable/medium_rain</item>
-        <item>@drawable/mist</item>
-        <item>@drawable/smoke</item>
-        <item>@drawable/windy</item>
-        <item>@drawable/windy_clear</item>
+        <item>@drawable/ic_weather_sun</item>
+        <item>@drawable/ic_weather_cloud</item>
+        <item>@drawable/ic_weather_cloud_and_fog</item>
+        <item>@drawable/ic_weather_moon_and_cloudy</item>
+        <item>@drawable/ic_weather_moon_and_fog</item>
+        <item>@drawable/ic_weather_moon</item>
+        <item>@drawable/ic_weather_rain</item>
+        <item>@drawable/ic_weather_rain_and_hail</item>
+        <item>@drawable/ic_weather_snow</item>
+        <item>@drawable/ic_weather_sun_and_cloudy</item>
+        <item>@drawable/ic_weather_sun_and_fog</item>
+        <item>@drawable/ic_weather_sun_and_rain</item>
+        <item>@drawable/ic_weather_thunder</item>
+        <item>@drawable/ic_weather_tornado</item>
+        <item>@drawable/ic_weather_wind_and_cloud</item>
     </integer-array>
 
 </resources>

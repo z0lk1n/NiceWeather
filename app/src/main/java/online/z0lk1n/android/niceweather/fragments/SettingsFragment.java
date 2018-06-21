@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import online.z0lk1n.android.niceweather.R;
 
 public class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
+    public static final String NAME = "SettingsFragment";
     public static final String KEY_PREF_WIND_SPEED = "pref_windSpeed";
     public static final String KEY_PREF_AIR_HUMIDITY = "pref_airHumidity";
     public static final String KEY_PREF_PRESSURE = "pref_pressure";
@@ -53,3 +54,10 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
         }
     }
 }
+//        citiesListBtn.setOnClickListener(new View.OnClickListener() {
+//@Override
+//public void onClick(View view) {
+//        FragmentNavigator fragmentNavigator = (FragmentNavigator) that;
+//        fragmentNavigator.startCitiesListFragment();
+//        }
+//        });

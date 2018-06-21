@@ -2,7 +2,6 @@ package online.z0lk1n.android.niceweather.fragments;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,12 +10,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import online.z0lk1n.android.niceweather.DetailWeatherActivity;
 import online.z0lk1n.android.niceweather.R;
 import online.z0lk1n.android.niceweather.util.CitiesList;
 import online.z0lk1n.android.niceweather.util.RecyclerAdapter;
 
 public class CitiesListFragment extends Fragment {
+    public static final String NAME = "CitiesListFragment";
     public static final String CITY = "CurrentCity";
     private RecyclerView recyclerView;
     private CitiesList citiesList;
@@ -53,7 +52,7 @@ public class CitiesListFragment extends Fragment {
             }
         });
 
-        View detailsWeather = getActivity().findViewById(R.id.detail_weather);
+        View detailsWeather = getActivity().findViewById(R.id.fragment_container);
         isExistAnotherFragment = detailsWeather != null && detailsWeather.getVisibility() == View.VISIBLE;
 
         if (savedInstanceState != null) {
@@ -76,21 +75,16 @@ public class CitiesListFragment extends Fragment {
 
         if (isExistAnotherFragment) {
             DetailWeatherFragment fragment =
-                    (DetailWeatherFragment) getFragmentManager().findFragmentById(R.id.detail_weather);
+                    (DetailWeatherFragment) getFragmentManager().findFragmentById(R.id.fragment_container);
 
             if (fragment == null || !city.equals(fragment.getCity())) {
                 fragment = DetailWeatherFragment.create(city);
 
                 FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.detail_weather, fragment);
+                fragmentTransaction.replace(R.id.fragment_container, fragment);
                 fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
                 fragmentTransaction.commit();
             }
-        } else {
-            Intent intent = new Intent();
-            intent.setClass(getActivity(), DetailWeatherActivity.class);
-            intent.putExtra(CITY, city);
-            startActivity(intent);
         }
     }
 

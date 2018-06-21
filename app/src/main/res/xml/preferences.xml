@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
-    <CheckBoxPreference
-        android:defaultValue="false"
-        android:key="wind_speed"
-        android:title="@string/wind_speed" />
-    <CheckBoxPreference
-        android:defaultValue="false"
-        android:key="air_humidity"
-        android:title="@string/air_humidity" />
-    <CheckBoxPreference
-        android:defaultValue="false"
-        android:key="pressure"
-        android:title="@string/pressure" />
+    <PreferenceCategory android:title="@string/units">
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="wind_speed"
+            android:title="@string/wind_speed" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="air_humidity"
+            android:title="@string/air_humidity" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="pressure"
+            android:title="@string/pressure" />
+    </PreferenceCategory>
+    <PreferenceCategory android:title="@string/communication">
+        <Preference android:title="@string/rate_app"></Preference>
+        <Preference android:title="@string/about"></Preference>
+    </PreferenceCategory>
 </PreferenceScreen>

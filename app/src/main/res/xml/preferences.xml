@@ -3,19 +3,46 @@
     <PreferenceCategory android:title="@string/units">
         <SwitchPreference
             android:defaultValue="false"
-            android:key="wind_speed"
+            android:key="pref_temperature"
+            android:summaryOff="@string/celsius"
+            android:summaryOn="@string/fahrenheit"
+            android:switchTextOff="@string/unit_celsius"
+            android:switchTextOn="@string/unit_fahrenheit"
+            android:title="@string/temperature" />
+
+        <SwitchPreference
+            android:defaultValue="false"
+            android:key="pref_windSpeed"
+            android:summaryOff="@string/meter_per_second"
+            android:summaryOn="@string/kilometers_per_hour"
+            android:switchTextOff="@string/unit_m_s"
+            android:switchTextOn="@string/unit_km_h"
             android:title="@string/wind_speed" />
+
         <SwitchPreference
             android:defaultValue="false"
-            android:key="air_humidity"
-            android:title="@string/air_humidity" />
-        <SwitchPreference
-            android:defaultValue="false"
-            android:key="pressure"
+            android:key="pref_pressure"
+            android:summaryOff="@string/millimeter_of_mercury"
+            android:summaryOn="@string/pascal"
+            android:switchTextOff="@string/unit_torr"
+            android:switchTextOn="@string/unit_pascal"
             android:title="@string/pressure" />
+
     </PreferenceCategory>
+
     <PreferenceCategory android:title="@string/communication">
-        <Preference android:title="@string/rate_app"></Preference>
-        <Preference android:title="@string/about"></Preference>
+        <Preference
+            android:key="pref_rateApp"
+            android:title="@string/rate_app">
+
+        </Preference>
+
+        <Preference
+            android:key="pref_about"
+            android:title="@string/about">
+
+        </Preference>
+
     </PreferenceCategory>
+
 </PreferenceScreen>

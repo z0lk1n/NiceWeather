@@ -21,7 +21,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     public RecyclerAdapter.ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.item, parent, false);
-        return new ViewHolder((TextView) view);
+        return new ViewHolder(view);
     }
 
     @Override
@@ -41,9 +41,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public class ViewHolder extends RecyclerView.ViewHolder {
         public TextView textView;
 
-        public ViewHolder(TextView itemView) {
+        public ViewHolder(View itemView) {
             super(itemView);
-            textView = itemView;
+            textView = itemView.findViewById(R.id.txtView_item);
 
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override

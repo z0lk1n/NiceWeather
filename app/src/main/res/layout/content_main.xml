@@ -13,16 +13,7 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="81dp"
-        tools:layout_editor_absoluteY="88dp" />
-
-    <!--<online.z0lk1n.android.niceweather.util.CustomView-->
-        <!--android:id="@+id/customView"-->
-        <!--android:layout_width="wrap_content"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--app:cv_Color="@color/colorAccent"-->
-        <!--app:cv_Radius="100"-->
-        <!--app:layout_constraintVertical_chainStyle="packed"-->
-        <!--tools:layout_editor_absoluteX="134dp"-->
-        <!--tools:layout_editor_absoluteY="392dp" />-->
+        tools:layout_editor_absoluteY="88dp"
+        tools:ignore="MissingConstraints" />
 
 </android.support.constraint.ConstraintLayout>

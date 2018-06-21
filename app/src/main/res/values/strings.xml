@@ -42,4 +42,10 @@
     <string name="units">Units</string>
     <string name="communication">Communication</string>
     <string name="rate_app">Rate app</string>
+    <string name="celsius">degree Celsius</string>
+    <string name="fahrenheit">degree Fahrenheit</string>
+    <string name="meter_per_second">meter per second</string>
+    <string name="kilometers_per_hour">kilometers per hour</string>
+    <string name="pascal">pascal</string>
+    <string name="millimeter_of_mercury">millimeter of mercury</string>
 </resources>

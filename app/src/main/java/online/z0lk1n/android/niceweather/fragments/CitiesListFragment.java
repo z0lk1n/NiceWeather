@@ -19,7 +19,6 @@ public class CitiesListFragment extends Fragment {
     public static final String CITY = "CurrentCity";
     private RecyclerView recyclerView;
     private CitiesList citiesList;
-    private boolean isExistAnotherFragment;
     int currentPosition = 0;
 
     @Nullable
@@ -48,20 +47,14 @@ public class CitiesListFragment extends Fragment {
             @Override
             public void onItemClick(View view, int position) {
                 currentPosition = position;
-                showAnotherFragment();
+                showDetailWeather();
             }
         });
-
-        View detailsWeather = getActivity().findViewById(R.id.fragment_container);
-        isExistAnotherFragment = detailsWeather != null && detailsWeather.getVisibility() == View.VISIBLE;
 
         if (savedInstanceState != null) {
             currentPosition = savedInstanceState.getInt(CITY, 0);
         }
 
-        if (isExistAnotherFragment) {
-            showAnotherFragment();
-        }
     }
 
     @Override
@@ -70,21 +63,20 @@ public class CitiesListFragment extends Fragment {
         outState.putInt(CITY, currentPosition);
     }
 
-    private void showAnotherFragment() {
+    private void showDetailWeather() {
         String city = citiesList.getCities().get(currentPosition);
 
-        if (isExistAnotherFragment) {
-            DetailWeatherFragment fragment =
-                    (DetailWeatherFragment) getFragmentManager().findFragmentById(R.id.fragment_container);
+        DetailWeatherFragment detailWeatherFragment =
+                (DetailWeatherFragment) getFragmentManager()
+                        .findFragmentByTag(DetailWeatherFragment.NAME);
 
-            if (fragment == null || !city.equals(fragment.getCity())) {
-                fragment = DetailWeatherFragment.create(city);
+        if (detailWeatherFragment == null || !city.equals(detailWeatherFragment.getCity())) {
+            detailWeatherFragment = DetailWeatherFragment.create(city);
 
-                FragmentTransaction fragmentTransaction = getFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragment_container, fragment);
-                fragmentTransaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE);
-                fragmentTransaction.commit();
-            }
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, detailWeatherFragment)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .commit();
         }
     }
 

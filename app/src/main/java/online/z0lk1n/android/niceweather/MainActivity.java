@@ -1,22 +1,19 @@
 package online.z0lk1n.android.niceweather;
 
 import android.os.Bundle;
-import android.support.design.widget.NavigationView;
-import android.support.v4.view.GravityCompat;
-import android.support.v4.widget.DrawerLayout;
-import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import online.z0lk1n.android.niceweather.fragments.CitiesListFragment;
 import online.z0lk1n.android.niceweather.fragments.DetailWeatherFragment;
 import online.z0lk1n.android.niceweather.fragments.SettingsFragment;
 
-public class MainActivity extends AppCompatActivity
-        implements NavigationView.OnNavigationItemSelectedListener {
+public class MainActivity extends AppCompatActivity {
     DetailWeatherFragment detailWeatherFragment;
     SettingsFragment settingsFragment;
+    CitiesListFragment citiesListFragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,29 +22,16 @@ public class MainActivity extends AppCompatActivity
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
-        drawer.addDrawerListener(toggle);
-        toggle.syncState();
-
-        NavigationView navigationView = findViewById(R.id.nav_view);
-        navigationView.setNavigationItemSelectedListener(this);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
 
         if (savedInstanceState == null) {
             showDetailWeather();
         }
     }
 
-    @Override
-    public void onBackPressed() {
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        if (drawer.isDrawerOpen(GravityCompat.START)) {
-            drawer.closeDrawer(GravityCompat.START);
-        } else {
-            super.onBackPressed();
-        }
-    }
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
@@ -58,6 +42,9 @@ public class MainActivity extends AppCompatActivity
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
+            case android.R.id.home:
+                showCitiesList();
+                return true;
             case R.id.action_settings:
                 showSettings();
                 return true;
@@ -65,25 +52,13 @@ public class MainActivity extends AppCompatActivity
         return super.onOptionsItemSelected(item);
     }
 
-    @Override
-    public boolean onNavigationItemSelected(MenuItem item) {
-        switch (item.getItemId()) {
-            case R.id.nav_camera:
-                return true;
-            case R.id.nav_gallery:
-                return true;
-        }
-        DrawerLayout drawer = findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
-    }
 
     private void showDetailWeather() {
         detailWeatherFragment = (DetailWeatherFragment) getFragmentManager()
                 .findFragmentByTag(DetailWeatherFragment.NAME);
 
         if (detailWeatherFragment == null) {
-            detailWeatherFragment = new DetailWeatherFragment();
+            detailWeatherFragment = DetailWeatherFragment.create("CITY");
         }
 
         getFragmentManager()
@@ -107,6 +82,24 @@ public class MainActivity extends AppCompatActivity
         getFragmentManager()
                 .beginTransaction()
                 .replace(R.id.fragment_container, settingsFragment, SettingsFragment.NAME)
+                .addToBackStack(null).commit();
+    }
+
+    private void showCitiesList() {
+        citiesListFragment = (CitiesListFragment) getFragmentManager()
+                .findFragmentByTag(CitiesListFragment.NAME);
+
+        if (citiesListFragment == null) {
+            citiesListFragment = new CitiesListFragment();
+        }
+
+        if (citiesListFragment.isAdded()) {
+            return;
+        }
+
+        getFragmentManager()
+                .beginTransaction()
+                .replace(R.id.fragment_container, citiesListFragment, CitiesListFragment.NAME)
                 .addToBackStack(null).commit();
     }
 }

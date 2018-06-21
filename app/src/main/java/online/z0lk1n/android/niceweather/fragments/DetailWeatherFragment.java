@@ -36,6 +36,7 @@ public class DetailWeatherFragment extends Fragment {
         return fragment;
     }
 
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -70,8 +71,7 @@ public class DetailWeatherFragment extends Fragment {
 
         TypedArray weatherImages = getResources().obtainTypedArray(R.array.weather_images);
 //
-//        cityView.setText(getArguments().getString(CITY));
-        cityTxtView.setText(R.string.city);
+        cityTxtView.setText(getArguments().getString(CITY));
         weatherImage.setImageResource(weatherImages.getResourceId(0, -1));
 //        temperatureView.setText(R.string.test_temperature);
         temperatureUnitView.setText(R.string.unit_celsius);

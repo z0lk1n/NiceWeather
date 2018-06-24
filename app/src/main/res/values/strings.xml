@@ -25,6 +25,7 @@
     <string name="settings">settings</string>
     <string name="detail_weather">detail weather</string>
     <string name="cities_list">cities list</string>
+    <string name="search_hint">City</string>
 
     <string name="unit_percent" translatable="false">%</string>
     <string name="unit_celsius" translatable="false">°C</string>

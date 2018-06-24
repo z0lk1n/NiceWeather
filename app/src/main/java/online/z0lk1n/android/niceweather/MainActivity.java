@@ -7,15 +7,11 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 
-import online.z0lk1n.android.niceweather.fragments.CitiesListFragment;
-import online.z0lk1n.android.niceweather.fragments.DetailWeatherFragment;
-import online.z0lk1n.android.niceweather.fragments.SettingsFragment;
+import online.z0lk1n.android.niceweather.ui.CitiesListFragment;
+import online.z0lk1n.android.niceweather.ui.DetailWeatherFragment;
+import online.z0lk1n.android.niceweather.ui.SettingsFragment;
 
-public class MainActivity extends AppCompatActivity implements FragmentNavigator {
-    DetailWeatherFragment detailWeatherFragment;
-    SettingsFragment settingsFragment;
-    CitiesListFragment citiesListFragment;
-
+public class MainActivity extends AppCompatActivity implements FragmentNavigator, MenuItem.OnActionExpandListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -45,13 +41,7 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigator
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home:
-                if (settingsFragment != null && settingsFragment.isAdded()) {
-                    backToDetailWeather();
-                } else if (citiesListFragment != null && citiesListFragment.isAdded()) {
-                    backToDetailWeather();
-                } else {
-                    showCitiesList();
-                }
+                showCitiesList();
                 return true;
             case R.id.action_settings:
                 showSettings();
@@ -62,9 +52,10 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigator
         return super.onOptionsItemSelected(item);
     }
 
+
     @Override
     public void showDetailWeather() {
-        detailWeatherFragment = (DetailWeatherFragment) getFragmentManager()
+        DetailWeatherFragment detailWeatherFragment = (DetailWeatherFragment) getFragmentManager()
                 .findFragmentByTag(DetailWeatherFragment.NAME);
 
         if (detailWeatherFragment == null) {
@@ -79,48 +70,71 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigator
 
     @Override
     public void showSettings() {
-        settingsFragment = (SettingsFragment) getFragmentManager()
+        SettingsFragment settingsFragment = (SettingsFragment) getFragmentManager()
                 .findFragmentByTag(SettingsFragment.NAME);
 
-        if (settingsFragment == null) {
+        if (settingsFragment != null && settingsFragment.isAdded()) {
+            getFragmentManager()
+                    .beginTransaction()
+                    .show(settingsFragment)
+                    .addToBackStack(null).commit();
+        } else {
             settingsFragment = new SettingsFragment();
+            getFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, settingsFragment, SettingsFragment.NAME)
+                    .addToBackStack(null).commit();
         }
-
-        if (settingsFragment.isAdded()) {
-            return;
-        }
-
-        getFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragment_container, settingsFragment, SettingsFragment.NAME)
-                .addToBackStack(null).commit();
     }
 
     @Override
     public void showCitiesList() {
-        citiesListFragment = (CitiesListFragment) getFragmentManager()
+        CitiesListFragment citiesListFragment = (CitiesListFragment) getFragmentManager()
                 .findFragmentByTag(CitiesListFragment.NAME);
 
-        if (citiesListFragment == null) {
+        if (citiesListFragment != null && citiesListFragment.isAdded()) {
             citiesListFragment = new CitiesListFragment();
-        }
+            getFragmentManager()
+                    .beginTransaction()
+                    .show(citiesListFragment)
+                    .addToBackStack(null).commit();
+        } else {
+            citiesListFragment = new CitiesListFragment();
 
-        if (citiesListFragment.isAdded()) {
-            return;
+            getFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, citiesListFragment, CitiesListFragment.NAME)
+                    .commit();
         }
-
-        getFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragment_container, citiesListFragment, CitiesListFragment.NAME)
-                .addToBackStack(null).commit();
     }
 
     @Override
     public void backToDetailWeather() {
-        getFragmentManager()
-                .beginTransaction()
-                .replace(R.id.fragment_container, detailWeatherFragment, DetailWeatherFragment.NAME)
-                .commit();
+        DetailWeatherFragment detailWeatherFragment = (DetailWeatherFragment) getFragmentManager()
+                .findFragmentByTag(DetailWeatherFragment.NAME);
+
+        if (detailWeatherFragment != null && detailWeatherFragment.isAdded()) {
+            getFragmentManager()
+                    .beginTransaction()
+                    .show(detailWeatherFragment)
+                    .commit();
+        } else {
+            detailWeatherFragment = DetailWeatherFragment.create("CITY");
+            getFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.fragment_container, detailWeatherFragment, SettingsFragment.NAME)
+                    .commit();
+        }
+    }
+
+    @Override
+    public boolean onMenuItemActionExpand(MenuItem item) {
+        return false;
+    }
+
+    @Override
+    public boolean onMenuItemActionCollapse(MenuItem item) {
+        return false;
     }
 }
 

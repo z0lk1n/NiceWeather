@@ -1,4 +1,4 @@
-package online.z0lk1n.android.niceweather.fragments;
+package online.z0lk1n.android.niceweather.ui;
 
 import android.app.Fragment;
 import android.content.SharedPreferences;
@@ -6,6 +6,7 @@ import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -80,5 +81,10 @@ public class DetailWeatherFragment extends Fragment {
 
     public String getCity() {
         return getArguments().getString(CITY);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
     }
 }

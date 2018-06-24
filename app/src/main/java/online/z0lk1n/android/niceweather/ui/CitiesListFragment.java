@@ -1,4 +1,4 @@
-package online.z0lk1n.android.niceweather.fragments;
+package online.z0lk1n.android.niceweather.ui;
 
 import android.app.Fragment;
 import android.app.FragmentTransaction;
@@ -7,6 +7,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
@@ -82,5 +83,10 @@ public class CitiesListFragment extends Fragment {
 
     public void setCity(String city) {
         this.citiesList.setCity(city);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
     }
 }

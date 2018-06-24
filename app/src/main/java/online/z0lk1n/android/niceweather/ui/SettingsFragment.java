@@ -1,4 +1,4 @@
-package online.z0lk1n.android.niceweather.fragments;
+package online.z0lk1n.android.niceweather.ui;
 
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -6,6 +6,7 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.SwitchPreference;
 import android.support.annotation.Nullable;
+import android.view.MenuItem;
 
 import online.z0lk1n.android.niceweather.R;
 
@@ -72,5 +73,10 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
             default:
                 break;
         }
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected(item);
     }
 }

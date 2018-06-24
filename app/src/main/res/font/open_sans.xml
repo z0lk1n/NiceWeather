@@ -34,12 +34,4 @@
         app:fontWeight="1000"
         app:font="@font/open_sans_bold"
         tools:targetApi="o" />
-    <font
-        android:fontStyle="normal"
-        android:fontWeight="1300"
-        android:font="@font/open_sans_extra_bold"
-        app:fontStyle="normal"
-        app:fontWeight="1300"
-        app:font="@font/open_sans_extra_bold"
-        tools:targetApi="o" />
 </font-family>

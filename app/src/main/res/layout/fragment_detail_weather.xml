@@ -14,6 +14,10 @@
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:paddingBottom="@dimen/activity_vertical_margin"
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:paddingTop="@dimen/activity_vertical_margin"
         android:layout_margin="@dimen/main_margin">
 
         <TextView
@@ -44,7 +48,8 @@
                 android:id="@+id/imgView_weather"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_weather_sun" />
+                app:srcCompat="@drawable/ic_weather_sun"
+                android:layout_marginStart="@dimen/main_margin"/>
 
         </LinearLayout>
 
@@ -65,12 +70,14 @@
                 android:id="@+id/txtView_wind_speed_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/wind_speed" />
+                android:text="@string/wind_speed"
+                android:layout_marginStart="@dimen/main_margin"/>
 
             <TextView
                 android:id="@+id/txtView_wind_speed"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/main_margin"/>
 
             <TextView
                 android:id="@+id/txtView_wind_speed_unit"
@@ -96,12 +103,14 @@
                 android:id="@+id/txtView_air_humidity_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/air_humidity" />
+                android:text="@string/air_humidity"
+                android:layout_marginStart="@dimen/main_margin"/>
 
             <TextView
                 android:id="@+id/txtView_air_humidity"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/main_margin"/>
 
             <TextView
                 android:id="@+id/txtView_air_humidity_unit"
@@ -128,12 +137,14 @@
                 android:id="@+id/txtView_pressure_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/pressure" />
+                android:text="@string/pressure"
+                android:layout_marginStart="@dimen/main_margin"/>
 
             <TextView
                 android:id="@+id/txtView_pressure"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/main_margin"/>
 
             <TextView
                 android:id="@+id/txtView_pressure_unit"

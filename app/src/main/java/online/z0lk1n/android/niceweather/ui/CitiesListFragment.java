@@ -13,6 +13,7 @@ import android.view.ViewGroup;
 
 import online.z0lk1n.android.niceweather.R;
 import online.z0lk1n.android.niceweather.util.CitiesList;
+import online.z0lk1n.android.niceweather.util.CityPreference;
 import online.z0lk1n.android.niceweather.util.RecyclerAdapter;
 
 public class CitiesListFragment extends Fragment {
@@ -66,13 +67,15 @@ public class CitiesListFragment extends Fragment {
 
     private void showDetailWeather() {
         String city = citiesList.getCities().get(currentPosition);
+        CityPreference cityPreference = new CityPreference(getActivity());
 
         DetailWeatherFragment detailWeatherFragment =
                 (DetailWeatherFragment) getFragmentManager()
                         .findFragmentByTag(DetailWeatherFragment.NAME);
 
-        if (detailWeatherFragment == null || !city.equals(detailWeatherFragment.getCity())) {
-            detailWeatherFragment = DetailWeatherFragment.create(city);
+        if (detailWeatherFragment == null || !city.equals(cityPreference.getCity())) {
+            cityPreference.setCity(city);
+            detailWeatherFragment = new DetailWeatherFragment();
 
             getFragmentManager().beginTransaction()
                     .replace(R.id.fragment_container, detailWeatherFragment)

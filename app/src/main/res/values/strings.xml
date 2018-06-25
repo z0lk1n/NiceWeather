@@ -33,7 +33,7 @@
     <string name="unit_m_s" translatable="false">m/s</string>
     <string name="unit_km_h" translatable="false">km/h</string>
     <string name="unit_pascal" translatable="false">hPa</string>
-    <string name="unit_torr" translatable="false">mm Hg</string>
+    <string name="unit_torr" translatable="false">mmHg</string>
 
     <string name="action_settings">Settings</string>
     <string name="communicate">Communicate</string>
@@ -49,4 +49,6 @@
     <string name="kilometers_per_hour">kilometers per hour</string>
     <string name="pascal">pascal</string>
     <string name="millimeter_of_mercury">millimeter of mercury</string>
+    <string name="open_weather_map_api_key">120b674ad2dc37f95bcf93bbb13becd2</string>
+    <string name="place_not_found">Place not found</string>
 </resources>

@@ -59,12 +59,12 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigator
                 .findFragmentByTag(DetailWeatherFragment.NAME);
 
         if (detailWeatherFragment == null) {
-            detailWeatherFragment = DetailWeatherFragment.create("CITY");
+            detailWeatherFragment = new DetailWeatherFragment();
         }
 
         getFragmentManager()
                 .beginTransaction()
-                .replace(R.id.fragment_container, detailWeatherFragment, DetailWeatherFragment.NAME)
+                .add(R.id.fragment_container, detailWeatherFragment, DetailWeatherFragment.NAME)
                 .commit();
     }
 
@@ -119,7 +119,7 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigator
                     .show(detailWeatherFragment)
                     .commit();
         } else {
-            detailWeatherFragment = DetailWeatherFragment.create("CITY");
+            detailWeatherFragment = new DetailWeatherFragment();
             getFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragment_container, detailWeatherFragment, SettingsFragment.NAME)

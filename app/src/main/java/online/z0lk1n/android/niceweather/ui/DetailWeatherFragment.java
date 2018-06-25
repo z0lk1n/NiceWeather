@@ -1,11 +1,9 @@
 package online.z0lk1n.android.niceweather.ui;
 
 import android.app.Fragment;
-import android.content.SharedPreferences;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.os.Handler;
-import android.preference.PreferenceManager;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
@@ -18,12 +16,11 @@ import android.widget.Toast;
 import org.json.JSONObject;
 
 import online.z0lk1n.android.niceweather.R;
-import online.z0lk1n.android.niceweather.util.CityPreference;
+import online.z0lk1n.android.niceweather.util.Preferences;
 import online.z0lk1n.android.niceweather.util.RequestMaker;
 
 public class DetailWeatherFragment extends Fragment {
     public static final String NAME = "DetailWeatherFragment";
-    public static final String CITY = "CurrentCity";
     TextView cityTxtView;
     ImageView weatherImage;
     TextView airHumidityView;
@@ -33,9 +30,7 @@ public class DetailWeatherFragment extends Fragment {
     TextView windSpeedUnitView;
     TextView pressureView;
     TextView pressureUnitView;
-    boolean isTemperature;
-    boolean isWindSpeed;
-    boolean isPressure;
+    private Preferences preferences;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -52,15 +47,12 @@ public class DetailWeatherFragment extends Fragment {
         pressureView = layout.findViewById(R.id.txtView_pressure);
         pressureUnitView = layout.findViewById(R.id.txtView_pressure_unit);
 
-        SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(getActivity());
-        isTemperature = preferences.getBoolean(SettingsFragment.KEY_PREF_TEMPERATURE, false);
-        isWindSpeed = preferences.getBoolean(SettingsFragment.KEY_PREF_WIND_SPEED, false);
-        isPressure = preferences.getBoolean(SettingsFragment.KEY_PREF_PRESSURE, false);
+        preferences = Preferences.getInstance(getActivity());
 
         TypedArray weatherImages = getResources().obtainTypedArray(R.array.weather_images);
         weatherImage.setImageResource(weatherImages.getResourceId(0, -1));
 
-        updateWeatherData(new CityPreference(getActivity()).getCity());
+        updateWeatherData(preferences.getCity());
         return layout;
     }
 
@@ -100,7 +92,7 @@ public class DetailWeatherFragment extends Fragment {
 
             cityTxtView.setText(json.getString("name"));
 
-            if (isTemperature) {
+            if (preferences.isTemperature()) {
                 double tmp = (main.getDouble("temp") * 9 / 5) + 32;
                 temperatureView.setText(String.format("%.1f", tmp));
                 temperatureUnitView.setText(R.string.unit_fahrenheit);
@@ -109,7 +101,7 @@ public class DetailWeatherFragment extends Fragment {
                 temperatureUnitView.setText(R.string.unit_celsius);
             }
 
-            if (isWindSpeed) {
+            if (preferences.isWindSpeed()) {
                 double tmp = (wind.getDouble("speed") * 36) / 10;
                 windSpeedView.setText(String.format("%.1f", tmp));
                 windSpeedUnitView.setText(R.string.unit_km_h);
@@ -120,7 +112,7 @@ public class DetailWeatherFragment extends Fragment {
 
             airHumidityView.setText(main.getString("humidity"));
 
-            if (isPressure) {
+            if (preferences.isPressure()) {
                 pressureView.setText(main.getString("pressure"));
                 pressureUnitView.setText(R.string.unit_pascal);
             } else {

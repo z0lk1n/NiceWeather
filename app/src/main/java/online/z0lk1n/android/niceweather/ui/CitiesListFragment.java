@@ -1,7 +1,6 @@
 package online.z0lk1n.android.niceweather.ui;
 
 import android.app.Fragment;
-import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
@@ -11,9 +10,9 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 
+import online.z0lk1n.android.niceweather.FragmentNavigator;
 import online.z0lk1n.android.niceweather.R;
 import online.z0lk1n.android.niceweather.util.CitiesList;
-import online.z0lk1n.android.niceweather.util.CityPreference;
 import online.z0lk1n.android.niceweather.util.RecyclerAdapter;
 
 public class CitiesListFragment extends Fragment {
@@ -66,22 +65,8 @@ public class CitiesListFragment extends Fragment {
     }
 
     private void showDetailWeather() {
-        String city = citiesList.getCities().get(currentPosition);
-        CityPreference cityPreference = new CityPreference(getActivity());
-
-        DetailWeatherFragment detailWeatherFragment =
-                (DetailWeatherFragment) getFragmentManager()
-                        .findFragmentByTag(DetailWeatherFragment.NAME);
-
-        if (detailWeatherFragment == null || !city.equals(cityPreference.getCity())) {
-            cityPreference.setCity(city);
-            detailWeatherFragment = new DetailWeatherFragment();
-
-            getFragmentManager().beginTransaction()
-                    .replace(R.id.fragment_container, detailWeatherFragment)
-                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
-                    .commit();
-        }
+        FragmentNavigator fragmentNavigator = (FragmentNavigator)getActivity();
+        fragmentNavigator.showDetailWeather(citiesList.getCities().get(currentPosition));
     }
 
     public void setCity(String city) {

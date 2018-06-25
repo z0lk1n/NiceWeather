@@ -9,6 +9,7 @@ import android.support.annotation.Nullable;
 import android.view.MenuItem;
 
 import online.z0lk1n.android.niceweather.R;
+import online.z0lk1n.android.niceweather.util.Preferences;
 
 public class SettingsFragment extends PreferenceFragment implements SharedPreferences.OnSharedPreferenceChangeListener {
     public static final String NAME = "SettingsFragment";
@@ -18,24 +19,24 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
     public static final String KEY_PREF_RATE_APP = "pref_rateApp";
     public static final String KEY_PREF_ABOUT = "pref_about";
 
+    private Preferences preferences;
     private SwitchPreference prefTemperature;
     private SwitchPreference prefWindSpeed;
     private SwitchPreference prefPressure;
     private Preference prefRateApp;
     private Preference prefAbout;
 
-
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
         setHasOptionsMenu(true);
-
         prefTemperature = (SwitchPreference) findPreference(KEY_PREF_TEMPERATURE);
         prefWindSpeed = (SwitchPreference) findPreference(KEY_PREF_WIND_SPEED);
         prefPressure = (SwitchPreference) findPreference(KEY_PREF_PRESSURE);
         prefRateApp = findPreference(KEY_PREF_RATE_APP);
         prefAbout = findPreference(KEY_PREF_ABOUT);
+        preferences = Preferences.getInstance(getActivity());
     }
 
     @Override
@@ -55,14 +56,14 @@ public class SettingsFragment extends PreferenceFragment implements SharedPrefer
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences, String key) {
         switch (key) {
-            case KEY_PREF_WIND_SPEED:
-                prefWindSpeed.setChecked(sharedPreferences.getBoolean(key, false));
-                break;
             case KEY_PREF_TEMPERATURE:
-                prefTemperature.setChecked(sharedPreferences.getBoolean(key, false));
+                preferences.setTemperature(prefTemperature.isChecked());
+                break;
+            case KEY_PREF_WIND_SPEED:
+                preferences.setWindSpeed(prefWindSpeed.isChecked());
                 break;
             case KEY_PREF_PRESSURE:
-                prefPressure.setChecked(sharedPreferences.getBoolean(key, false));
+                preferences.setPressure(prefPressure.isChecked());
                 break;
             case KEY_PREF_RATE_APP:
 

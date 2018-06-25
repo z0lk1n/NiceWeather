@@ -28,10 +28,12 @@ public class RequestMaker {
                     new InputStreamReader(connection.getInputStream()));
 
             StringBuilder json = new StringBuilder(1024);
-            String tmp = "";
-            while ((tmp = reader.readLine()) != null)
+            String tmp;
+            while ((tmp = reader.readLine()) != null) {
                 json.append(tmp).append("\n");
+            }
             reader.close();
+            connection.disconnect();
 
             JSONObject data = new JSONObject(json.toString());
 

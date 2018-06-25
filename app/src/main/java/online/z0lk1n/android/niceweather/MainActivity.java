@@ -1,5 +1,6 @@
 package online.z0lk1n.android.niceweather;
 
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -10,8 +11,10 @@ import android.view.MenuItem;
 import online.z0lk1n.android.niceweather.ui.CitiesListFragment;
 import online.z0lk1n.android.niceweather.ui.DetailWeatherFragment;
 import online.z0lk1n.android.niceweather.ui.SettingsFragment;
+import online.z0lk1n.android.niceweather.util.Preferences;
 
-public class MainActivity extends AppCompatActivity implements FragmentNavigator, MenuItem.OnActionExpandListener {
+public class MainActivity extends AppCompatActivity implements FragmentNavigator,
+        MenuItem.OnActionExpandListener {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +55,6 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigator
         return super.onOptionsItemSelected(item);
     }
 
-
     @Override
     public void showDetailWeather() {
         DetailWeatherFragment detailWeatherFragment = (DetailWeatherFragment) getFragmentManager()
@@ -69,6 +71,25 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigator
     }
 
     @Override
+    public void showDetailWeather(String city) {
+        Preferences preferences = Preferences.getInstance(this);
+
+        DetailWeatherFragment detailWeatherFragment =
+                (DetailWeatherFragment) getFragmentManager()
+                        .findFragmentByTag(DetailWeatherFragment.NAME);
+
+        if (detailWeatherFragment == null || !city.equals(preferences.getCity())) {
+            preferences.setCity(city);
+            detailWeatherFragment = new DetailWeatherFragment();
+
+            getFragmentManager().beginTransaction()
+                    .replace(R.id.fragment_container, detailWeatherFragment)
+                    .setTransition(FragmentTransaction.TRANSIT_FRAGMENT_FADE)
+                    .commit();
+        }
+    }
+
+    @Override
     public void showSettings() {
         SettingsFragment settingsFragment = (SettingsFragment) getFragmentManager()
                 .findFragmentByTag(SettingsFragment.NAME);
@@ -77,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigator
             getFragmentManager()
                     .beginTransaction()
                     .show(settingsFragment)
-                    .addToBackStack(null).commit();
+                    .commit();
         } else {
             settingsFragment = new SettingsFragment();
             getFragmentManager()
@@ -93,38 +114,38 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigator
                 .findFragmentByTag(CitiesListFragment.NAME);
 
         if (citiesListFragment != null && citiesListFragment.isAdded()) {
-            citiesListFragment = new CitiesListFragment();
             getFragmentManager()
                     .beginTransaction()
                     .show(citiesListFragment)
-                    .addToBackStack(null).commit();
+                    .commit();
         } else {
             citiesListFragment = new CitiesListFragment();
 
             getFragmentManager()
                     .beginTransaction()
                     .replace(R.id.fragment_container, citiesListFragment, CitiesListFragment.NAME)
-                    .commit();
+                    .addToBackStack(null).commit();
         }
     }
 
     @Override
     public void backToDetailWeather() {
-        DetailWeatherFragment detailWeatherFragment = (DetailWeatherFragment) getFragmentManager()
-                .findFragmentByTag(DetailWeatherFragment.NAME);
-
-        if (detailWeatherFragment != null && detailWeatherFragment.isAdded()) {
-            getFragmentManager()
-                    .beginTransaction()
-                    .show(detailWeatherFragment)
-                    .commit();
-        } else {
-            detailWeatherFragment = new DetailWeatherFragment();
-            getFragmentManager()
-                    .beginTransaction()
-                    .replace(R.id.fragment_container, detailWeatherFragment, SettingsFragment.NAME)
-                    .commit();
-        }
+//        DetailWeatherFragment detailWeatherFragment = (DetailWeatherFragment) getFragmentManager()
+//                .findFragmentByTag(DetailWeatherFragment.NAME);
+//
+//        if (detailWeatherFragment != null && detailWeatherFragment.isAdded()) {
+//            getFragmentManager()
+//                    .beginTransaction()
+//                    .show(detailWeatherFragment)
+//                    .commit();
+//        } else {
+//            detailWeatherFragment = new DetailWeatherFragment();
+//            getFragmentManager()
+//                    .beginTransaction()
+//                    .replace(R.id.fragment_container, detailWeatherFragment, SettingsFragment.NAME)
+//                    .commit();
+//        }
+        getFragmentManager().popBackStack();
     }
 
     @Override

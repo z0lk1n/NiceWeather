@@ -1,22 +1,27 @@
 package online.z0lk1n.android.niceweather.model;
 
+import java.util.List;
+
 public class OpenWeatherMap {
     private Coord coord;
-    private Weather weather;
+    private List<Weather> weatherList;
     private String base;
     private Main main;
     private Wind wind;
     private Clouds clouds;
     private Rain rain;
-    private long dt;
+    private int dt;
     private Sys sys;
     private int id;
     private String name;
     private int cod;
 
-    public OpenWeatherMap(Coord coord, Weather weather, String base, Main main, Wind wind, Clouds clouds, Rain rain, long dt, Sys sys, int id, String name, int cod) {
+    public OpenWeatherMap() {
+    }
+
+    public OpenWeatherMap(Coord coord, List<Weather> weatherList, String base, Main main, Wind wind, Clouds clouds, Rain rain, int dt, Sys sys, int id, String name, int cod) {
         this.coord = coord;
-        this.weather = weather;
+        this.weatherList = weatherList;
         this.base = base;
         this.main = main;
         this.wind = wind;
@@ -33,8 +38,8 @@ public class OpenWeatherMap {
         return coord;
     }
 
-    public Weather getWeather() {
-        return weather;
+    public List<Weather> getWeatherList() {
+        return weatherList;
     }
 
     public String getBase() {
@@ -57,7 +62,7 @@ public class OpenWeatherMap {
         return rain;
     }
 
-    public long getDt() {
+    public int getDt() {
         return dt;
     }
 
@@ -81,8 +86,8 @@ public class OpenWeatherMap {
         this.coord = coord;
     }
 
-    public void setWeather(Weather weather) {
-        this.weather = weather;
+    public void setWeatherList(List<Weather> weatherList) {
+        this.weatherList = weatherList;
     }
 
     public void setBase(String base) {
@@ -105,7 +110,7 @@ public class OpenWeatherMap {
         this.rain = rain;
     }
 
-    public void setDt(long dt) {
+    public void setDt(int dt) {
         this.dt = dt;
     }
 

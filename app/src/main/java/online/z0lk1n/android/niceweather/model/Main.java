@@ -2,7 +2,7 @@ package online.z0lk1n.android.niceweather.model;
 
 public class Main {
     private double temp;
-    private int pressure;
+    private double pressure;
     private int humidity;
     private double temp_min;
     private double temp_max;
@@ -11,7 +11,7 @@ public class Main {
         this.temp = temp;
     }
 
-    public void setPressure(int pressure) {
+    public void setPressure(double pressure) {
         this.pressure = pressure;
     }
 
@@ -31,7 +31,7 @@ public class Main {
         return temp;
     }
 
-    public int getPressure() {
+    public double getPressure() {
         return pressure;
     }
 
@@ -47,7 +47,7 @@ public class Main {
         return temp_max;
     }
 
-    public Main(double temp, int pressure, int humidity, double temp_min, double temp_max) {
+    public Main(double temp, double pressure, int humidity, double temp_min, double temp_max) {
         this.temp = temp;
         this.pressure = pressure;
         this.humidity = humidity;

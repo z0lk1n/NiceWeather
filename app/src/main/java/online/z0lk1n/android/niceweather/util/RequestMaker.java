@@ -2,14 +2,19 @@ package online.z0lk1n.android.niceweather.util;
 
 import android.content.Context;
 
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
+
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.URL;
 
 import online.z0lk1n.android.niceweather.R;
+import online.z0lk1n.android.niceweather.model.OpenWeatherMap;
 
 public class RequestMaker {
     private static final String OPEN_WEATHER_MAP_API =
@@ -40,6 +45,18 @@ public class RequestMaker {
             if (data.getInt("cod") != 200) {
                 return null;
             }
+
+            // TODO TEST
+            OpenWeatherMap openWeatherMap = new OpenWeatherMap();
+            Gson gson = new Gson();
+            Type type = new TypeToken<OpenWeatherMap>(){}.getType();
+            openWeatherMap = gson.fromJson(json.toString(), type);
+
+//            TODO doInBackground
+//            String stream = null;
+//            String ulrString = "  ";
+//            Helper http = new Helper();
+//            stream = http.getHTTPData(ulrString);
 
             return data;
         } catch (Exception e) {

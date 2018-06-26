@@ -43,6 +43,12 @@
 
         </Preference>
 
+        <Preference
+            android:key="2f515d68-42c9-486d-a713-1bad54be3aa8"
+            android:title="@string/credits">
+
+        </Preference>
+
     </PreferenceCategory>
 
 </PreferenceScreen>

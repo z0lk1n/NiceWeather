@@ -51,6 +51,7 @@
     <string name="millimeter_of_mercury">millimeter of mercury</string>
     <string name="open_weather_map_api_key">120b674ad2dc37f95bcf93bbb13becd2</string>
     <string name="place_not_found">Place not found</string>
+    <string name="credits">Credits</string>
 
     <string name="dialog_add_city_title">Please input city name</string>
     <string name="dialog_add_city_button_add">Add</string>

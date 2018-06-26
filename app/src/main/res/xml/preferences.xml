@@ -3,7 +3,7 @@
     <PreferenceCategory android:title="@string/units">
         <SwitchPreference
             android:defaultValue="false"
-            android:key="pref_temperature"
+            android:key="eed0dedb-f4ca-480d-8f10-7d24c60866c8"
             android:summaryOff="@string/celsius"
             android:summaryOn="@string/fahrenheit"
             android:switchTextOff="@string/unit_celsius"
@@ -12,7 +12,7 @@
 
         <SwitchPreference
             android:defaultValue="false"
-            android:key="pref_windSpeed"
+            android:key="87957712-0eb6-4ede-8572-f4d97b787e00"
             android:summaryOff="@string/meter_per_second"
             android:summaryOn="@string/kilometers_per_hour"
             android:switchTextOff="@string/unit_m_s"
@@ -21,7 +21,7 @@
 
         <SwitchPreference
             android:defaultValue="false"
-            android:key="pref_pressure"
+            android:key="bce0b14c-9ad9-4595-a2fd-5d90ce17cf97"
             android:summaryOff="@string/millimeter_of_mercury"
             android:summaryOn="@string/pascal"
             android:switchTextOff="@string/unit_torr"
@@ -32,13 +32,13 @@
 
     <PreferenceCategory android:title="@string/communication">
         <Preference
-            android:key="pref_rateApp"
+            android:key="d6560152-8716-41ff-bdd1-69d92f17c9b0"
             android:title="@string/rate_app">
 
         </Preference>
 
         <Preference
-            android:key="pref_about"
+            android:key="47b7aaa5-3dae-4157-8977-855f01ad8886"
             android:title="@string/about">
 
         </Preference>

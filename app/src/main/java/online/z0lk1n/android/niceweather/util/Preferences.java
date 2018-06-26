@@ -11,7 +11,7 @@ public class Preferences {
     private static SharedPreferences sharedPref;
     private static SharedPreferences.Editor editor;
 
-    private static final String KEY_PREF_CITY = "pref_city";
+    private static final String KEY_PREF_CITY = "78042f13-e51f-48ee-9414-294fa1675918";
     private static final String KEY_PREF_DEFAULT_CITY = "Moscow";
 
     private Preferences() {

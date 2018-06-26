@@ -6,6 +6,8 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,23 +15,25 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
+import online.z0lk1n.android.niceweather.FragmentNavigator;
 import online.z0lk1n.android.niceweather.R;
 import online.z0lk1n.android.niceweather.util.Preferences;
 import online.z0lk1n.android.niceweather.util.RequestMaker;
 
 public class DetailWeatherFragment extends Fragment {
-    public static final String NAME = "DetailWeatherFragment";
-    TextView cityTxtView;
-    ImageView weatherImage;
-    TextView airHumidityView;
-    TextView temperatureView;
-    TextView temperatureUnitView;
-    TextView windSpeedView;
-    TextView windSpeedUnitView;
-    TextView pressureView;
-    TextView pressureUnitView;
+    public static final String NAME = "26a77419-a51e-46c9-8b34-9f83698229f2";
+    private TextView cityTxtView;
+    private ImageView weatherImage;
+    private TextView airHumidityView;
+    private TextView temperatureView;
+    private TextView temperatureUnitView;
+    private TextView windSpeedView;
+    private TextView windSpeedUnitView;
+    private TextView pressureView;
+    private TextView pressureUnitView;
     private Preferences preferences;
 
     @Override
@@ -53,12 +57,8 @@ public class DetailWeatherFragment extends Fragment {
         weatherImage.setImageResource(weatherImages.getResourceId(0, -1));
 
         updateWeatherData(preferences.getCity());
+        setupToolbar();
         return layout;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        return super.onOptionsItemSelected(item);
     }
 
     private void updateWeatherData(final String city) {
@@ -86,6 +86,7 @@ public class DetailWeatherFragment extends Fragment {
     }
 
     private void renderWeather(JSONObject json) {
+
         try {
             JSONObject main = json.getJSONObject("main");
             JSONObject wind = json.getJSONObject("wind");
@@ -120,8 +121,39 @@ public class DetailWeatherFragment extends Fragment {
                 pressureView.setText(String.format("%.0f", tmp));
                 pressureUnitView.setText(R.string.unit_torr);
             }
-        } catch (Exception e) {
-            Log.e("SimpleWeather", "One or more fields not found in the JSON data");
+        } catch (JSONException e) {
+            Log.e(getActivity().getPackageName(), "One or more fields not found in the JSON data");
         }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+        super.onCreateOptionsMenu(menu, inflater);
+        inflater.inflate(R.menu.menu_main, menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        FragmentNavigator fragmentNavigator;
+        switch (item.getItemId()) {
+            case android.R.id.home:
+                fragmentNavigator = (FragmentNavigator) getActivity();
+                fragmentNavigator.showCitiesList();
+                return true;
+            case R.id.action_settings:
+                fragmentNavigator = (FragmentNavigator) getActivity();
+                fragmentNavigator.showSettings();
+                return true;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    public void setupToolbar() {
+        setHasOptionsMenu(true);
+        FragmentNavigator fragmentNavigator = (FragmentNavigator) getActivity();
+        fragmentNavigator.setupToolbar(getResources().getString(R.string.app_name),
+                R.drawable.ic_toolbar_cities_list);
     }
 }

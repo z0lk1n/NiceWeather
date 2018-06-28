@@ -8,18 +8,18 @@
     android:layout_gravity="top"
     android:layout_margin="@dimen/list_item_margin"
     android:elevation="@dimen/list_item_elevation"
-    card_view:cardCornerRadius="@dimen/list_item_card_corner_radius"
-    app:cardBackgroundColor="@color/colorBlack">
+    app:cardBackgroundColor="@color/colorBlack"
+    card_view:cardCornerRadius="@dimen/list_item_card_corner_radius">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_margin="@dimen/main_margin"
         android:paddingBottom="@dimen/activity_vertical_margin"
         android:paddingLeft="@dimen/activity_horizontal_margin"
         android:paddingRight="@dimen/activity_horizontal_margin"
-        android:paddingTop="@dimen/activity_vertical_margin"
-        android:layout_margin="@dimen/main_margin">
+        android:paddingTop="@dimen/activity_vertical_margin">
 
         <TextView
             android:id="@+id/txtView_city"
@@ -49,8 +49,9 @@
                 android:id="@+id/txtView_weather_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:textSize="48sp"
-                android:layout_marginStart="@dimen/main_margin"/>
+                android:layout_marginStart="@dimen/main_margin"
+                android:fontFamily="@font/weather_icons"
+                android:textSize="48sp" />
 
         </LinearLayout>
 
@@ -61,24 +62,26 @@
             android:layout_below="@+id/linLay_temperature"
             android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/imgView_wind_speed_image"
+            <TextView
+                android:id="@+id/txtView_wind_speed_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_weather_wind_speed" />
+                android:fontFamily="@font/weather_icons"
+                android:text="@string/wi_strong_wind"
+                android:textSize="36sp" />
 
             <TextView
                 android:id="@+id/txtView_wind_speed_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/wind_speed"
-                android:layout_marginStart="@dimen/main_margin"/>
+                android:layout_marginStart="@dimen/main_margin"
+                android:text="@string/wind_speed" />
 
             <TextView
                 android:id="@+id/txtView_wind_speed"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/main_margin"/>
+                android:layout_marginStart="@dimen/main_margin" />
 
             <TextView
                 android:id="@+id/txtView_wind_speed_unit"
@@ -94,24 +97,26 @@
             android:layout_below="@+id/linLay_wind_speed"
             android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/imgView_air_humidity_image"
+            <TextView
+                android:id="@+id/txtView_air_humidity_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_weather_air_humidity" />
+                android:fontFamily="@font/weather_icons"
+                android:text="@string/wi_humidity"
+                android:textSize="36sp" />
 
             <TextView
                 android:id="@+id/txtView_air_humidity_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/air_humidity"
-                android:layout_marginStart="@dimen/main_margin"/>
+                android:layout_marginStart="@dimen/main_margin"
+                android:text="@string/air_humidity" />
 
             <TextView
                 android:id="@+id/txtView_air_humidity"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/main_margin"/>
+                android:layout_marginStart="@dimen/main_margin" />
 
             <TextView
                 android:id="@+id/txtView_air_humidity_unit"
@@ -128,24 +133,26 @@
             android:layout_below="@+id/linLay_air_humidity"
             android:orientation="horizontal">
 
-            <ImageView
-                android:id="@+id/imgView_pressure_image"
+            <TextView
+                android:id="@+id/txtView_pressure_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_weather_pressure" />
+                android:fontFamily="@font/weather_icons"
+                android:text="@string/wi_barometer"
+                android:textSize="36sp" />
 
             <TextView
                 android:id="@+id/txtView_pressure_label"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/pressure"
-                android:layout_marginStart="@dimen/main_margin"/>
+                android:layout_marginStart="@dimen/main_margin"
+                android:text="@string/pressure" />
 
             <TextView
                 android:id="@+id/txtView_pressure"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/main_margin"/>
+                android:layout_marginStart="@dimen/main_margin" />
 
             <TextView
                 android:id="@+id/txtView_pressure_unit"

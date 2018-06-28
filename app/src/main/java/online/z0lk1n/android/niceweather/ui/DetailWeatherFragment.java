@@ -1,9 +1,7 @@
 package online.z0lk1n.android.niceweather.ui;
 
 import android.app.Fragment;
-import android.graphics.Typeface;
 import android.os.Bundle;
-import android.os.Handler;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.Menu;
@@ -12,19 +10,15 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
-import android.widget.Toast;
-
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import online.z0lk1n.android.niceweather.FragmentNavigator;
 import online.z0lk1n.android.niceweather.R;
+import online.z0lk1n.android.niceweather.model.OpenWeatherMap;
+import online.z0lk1n.android.niceweather.util.HttpRequester;
 import online.z0lk1n.android.niceweather.util.Preferences;
-import online.z0lk1n.android.niceweather.util.RequestMaker;
 
 public class DetailWeatherFragment extends Fragment {
     public static final String NAME = "26a77419-a51e-46c9-8b34-9f83698229f2";
-    private Typeface weatherFont;
     private TextView cityTxtView;
     private TextView weatherIconTxtView;
     private TextView airHumidityView;
@@ -43,8 +37,6 @@ public class DetailWeatherFragment extends Fragment {
 
 
         preferences = Preferences.getInstance(getActivity());
-        weatherFont = Typeface.createFromAsset(getActivity().getAssets(),
-                "fonts/weather_icons.ttf");
 
         cityTxtView = layout.findViewById(R.id.txtView_city);
         weatherIconTxtView = layout.findViewById(R.id.txtView_weather_icon);
@@ -56,78 +48,57 @@ public class DetailWeatherFragment extends Fragment {
         pressureView = layout.findViewById(R.id.txtView_pressure);
         pressureUnitView = layout.findViewById(R.id.txtView_pressure_unit);
 
-        weatherIconTxtView.setTypeface(weatherFont);
-
         updateWeatherData(preferences.getCity());
         setupToolbar();
 
         return layout;
     }
 
-    private void updateWeatherData(final String city) {
-        final Handler handler = new Handler();
-        new Thread() {
-            public void run() {
-                final JSONObject json = RequestMaker.getJSON(getActivity(), city);
-                if (json == null) {
-                    handler.post(new Runnable() {
-                        public void run() {
-                            Toast.makeText(getActivity(),
-                                    getActivity().getString(R.string.place_not_found),
-                                    Toast.LENGTH_LONG).show();
-                        }
-                    });
-                } else {
-                    handler.post(new Runnable() {
-                        public void run() {
-                            renderWeather(json);
-                        }
-                    });
-                }
+    private void updateWeatherData(String city) {
+        HttpRequester requester = new HttpRequester(new HttpRequester.OnResponseCompleted() {
+            @Override
+            public void onCompleted(OpenWeatherMap owm) {
+                renderWeather(owm);
             }
-        }.start();
+        });
+        requester.run(getActivity(), city);
     }
 
-    private void renderWeather(JSONObject json) {
-
+    private void renderWeather(OpenWeatherMap owm) {
         try {
-            JSONObject main = json.getJSONObject("main");
-            JSONObject wind = json.getJSONObject("wind");
-
-
-            cityTxtView.setText(json.getString("name"));
-
-//            weatherIconTxtView.setText();
+            cityTxtView.setText(owm.getName());
+            weatherIconTxtView.setText(R.string.wi_day_sunny);
 
             if (preferences.isTemperature()) {
-                double tmp = (main.getDouble("temp") * 9 / 5) + 32;
+                double tmp = (owm.getMain().getTemp() * 9 / 5) + 32;
                 temperatureView.setText(String.format("%.1f", tmp));
                 temperatureUnitView.setText(R.string.unit_fahrenheit);
             } else {
-                temperatureView.setText(String.format("%.1f", main.getDouble("temp")));
+                temperatureView.setText(String.format("%.1f", owm.getMain().getTemp()));
                 temperatureUnitView.setText(R.string.unit_celsius);
             }
 
             if (preferences.isWindSpeed()) {
-                double tmp = (wind.getDouble("speed") * 36) / 10;
+                double tmp = (owm.getWind().getSpeed() * 36) / 10;
                 windSpeedView.setText(String.format("%.1f", tmp));
                 windSpeedUnitView.setText(R.string.unit_km_h);
             } else {
-                windSpeedView.setText(wind.getString("speed"));
+                windSpeedView.setText(String.format("%.1f", owm.getWind().getSpeed()));
                 windSpeedUnitView.setText(R.string.unit_m_s);
             }
 
-            airHumidityView.setText(main.getString("humidity"));
+            airHumidityView.setText(String.valueOf(owm.getMain().getHumidity()));
 
             if (preferences.isPressure()) {
-                pressureView.setText(main.getString("pressure"));
+                pressureView.setText(String.format("%.0f", owm.getMain().getPressure()));
                 pressureUnitView.setText(R.string.unit_pascal);
             } else {
-                double tmp = main.getDouble("pressure") * 0.75006375541921;
+                double tmp = owm.getMain().getPressure() * 0.75006375541921;
                 pressureView.setText(String.format("%.0f", tmp));
                 pressureUnitView.setText(R.string.unit_torr);
             }
-        } catch (JSONException e) {
+
+        } catch (Exception e) {
             Log.e(getActivity().getPackageName(), "One or more fields not found in the JSON data");
         }
     }

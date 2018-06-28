@@ -14,6 +14,7 @@
         android:layout_height="match_parent"
         tools:layout_editor_absoluteX="81dp"
         tools:layout_editor_absoluteY="88dp"
-        tools:ignore="MissingConstraints" />
+        tools:ignore="MissingConstraints"
+        android:background="@color/colorBlack"/>
 
 </android.support.constraint.ConstraintLayout>

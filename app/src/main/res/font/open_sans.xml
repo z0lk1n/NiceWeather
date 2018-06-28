@@ -20,18 +20,18 @@
         tools:targetApi="o" />
     <font
         android:fontStyle="normal"
-        android:fontWeight="700"
+        android:fontWeight="600"
         android:font="@font/open_sans_semi_bold"
         app:fontStyle="normal"
-        app:fontWeight="700"
+        app:fontWeight="600"
         app:font="@font/open_sans_semi_bold"
         tools:targetApi="o" />
     <font
         android:fontStyle="normal"
-        android:fontWeight="1000"
+        android:fontWeight="700"
         android:font="@font/open_sans_bold"
         app:fontStyle="normal"
-        app:fontWeight="1000"
+        app:fontWeight="700"
         app:font="@font/open_sans_bold"
         tools:targetApi="o" />
 </font-family>

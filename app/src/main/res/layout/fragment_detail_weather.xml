@@ -8,7 +8,8 @@
     android:layout_gravity="top"
     android:layout_margin="@dimen/list_item_margin"
     android:elevation="@dimen/list_item_elevation"
-    card_view:cardCornerRadius="@dimen/list_item_card_corner_radius">
+    card_view:cardCornerRadius="@dimen/list_item_card_corner_radius"
+    app:cardBackgroundColor="@color/colorBlack">
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
         xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -44,11 +45,11 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content" />
 
-            <ImageView
-                android:id="@+id/imgView_weather"
+            <TextView
+                android:id="@+id/txtView_weather_icon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/ic_weather_sun"
+                android:textSize="48sp"
                 android:layout_marginStart="@dimen/main_margin"/>
 
         </LinearLayout>

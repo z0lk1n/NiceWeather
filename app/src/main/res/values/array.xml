@@ -1,22 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <integer-array name="weather_images">
-        <item>@drawable/ic_weather_sun</item>
-        <item>@drawable/ic_weather_cloud</item>
-        <item>@drawable/ic_weather_cloud_and_fog</item>
-        <item>@drawable/ic_weather_moon_and_cloudy</item>
-        <item>@drawable/ic_weather_moon_and_fog</item>
-        <item>@drawable/ic_weather_moon</item>
-        <item>@drawable/ic_weather_rain</item>
-        <item>@drawable/ic_weather_rain_and_hail</item>
-        <item>@drawable/ic_weather_snow</item>
-        <item>@drawable/ic_weather_sun_and_cloudy</item>
-        <item>@drawable/ic_weather_sun_and_fog</item>
-        <item>@drawable/ic_weather_sun_and_rain</item>
-        <item>@drawable/ic_weather_thunder</item>
-        <item>@drawable/ic_weather_tornado</item>
-        <item>@drawable/ic_weather_wind_and_cloud</item>
+    <integer-array name="weather">
+
     </integer-array>
 
 </resources>

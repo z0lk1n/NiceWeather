@@ -12,8 +12,6 @@
         <item name="colorPrimary">@color/colorDarkGray</item>
         <item name="colorPrimaryDark">@color/colorBlack</item>
         <item name="colorAccent">@color/colorBrighterAlizarinRed</item>
-        <!--<item name="textColorPrimary">@color/colorBrighterAlizarinRed</item>-->
-        <!--<item name="windowBackground">@color/colorDarkGray</item>-->
         <item name="android:textColor">@color/colorBrighterAlizarinRed</item>
         <item name="android:textSize">20sp</item>
         <item name="android:fontFamily">@font/open_sans_regular</item>

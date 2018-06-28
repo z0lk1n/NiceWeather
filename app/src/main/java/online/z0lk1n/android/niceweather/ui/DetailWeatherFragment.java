@@ -1,7 +1,7 @@
 package online.z0lk1n.android.niceweather.ui;
 
 import android.app.Fragment;
-import android.content.res.TypedArray;
+import android.graphics.Typeface;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -11,7 +11,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -25,8 +24,9 @@ import online.z0lk1n.android.niceweather.util.RequestMaker;
 
 public class DetailWeatherFragment extends Fragment {
     public static final String NAME = "26a77419-a51e-46c9-8b34-9f83698229f2";
+    private Typeface weatherFont;
     private TextView cityTxtView;
-    private ImageView weatherImage;
+    private TextView weatherIconTxtView;
     private TextView airHumidityView;
     private TextView temperatureView;
     private TextView temperatureUnitView;
@@ -41,8 +41,13 @@ public class DetailWeatherFragment extends Fragment {
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_detail_weather, container, false);
 
+
+        preferences = Preferences.getInstance(getActivity());
+        weatherFont = Typeface.createFromAsset(getActivity().getAssets(),
+                "fonts/weather_icons.ttf");
+
         cityTxtView = layout.findViewById(R.id.txtView_city);
-        weatherImage = layout.findViewById(R.id.imgView_weather);
+        weatherIconTxtView = layout.findViewById(R.id.txtView_weather_icon);
         airHumidityView = layout.findViewById(R.id.txtView_air_humidity);
         temperatureView = layout.findViewById(R.id.txtView_temperature);
         temperatureUnitView = layout.findViewById(R.id.txtView_temperature_unit);
@@ -51,13 +56,11 @@ public class DetailWeatherFragment extends Fragment {
         pressureView = layout.findViewById(R.id.txtView_pressure);
         pressureUnitView = layout.findViewById(R.id.txtView_pressure_unit);
 
-        preferences = Preferences.getInstance(getActivity());
-
-        TypedArray weatherImages = getResources().obtainTypedArray(R.array.weather_images);
-        weatherImage.setImageResource(weatherImages.getResourceId(0, -1));
+        weatherIconTxtView.setTypeface(weatherFont);
 
         updateWeatherData(preferences.getCity());
         setupToolbar();
+
         return layout;
     }
 
@@ -91,7 +94,10 @@ public class DetailWeatherFragment extends Fragment {
             JSONObject main = json.getJSONObject("main");
             JSONObject wind = json.getJSONObject("wind");
 
+
             cityTxtView.setText(json.getString("name"));
+
+//            weatherIconTxtView.setText();
 
             if (preferences.isTemperature()) {
                 double tmp = (main.getDouble("temp") * 9 / 5) + 32;

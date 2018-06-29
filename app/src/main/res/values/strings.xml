@@ -57,6 +57,7 @@
     <string name="dialog_add_city_button_add">Add</string>
     <string name="dialog_add_city_button_cancel">Cancel</string>
 
+    //Weather Icons
     <string name="wi_day_sunny">&#xf00d;</string>
     <string name="wi_day_cloudy">&#xf002;</string>
     <string name="wi_day_cloudy_gusts">&#xf000;</string>
@@ -83,6 +84,7 @@
     <string name="wi_hot">&#xf072;</string>
     <string name="wi_day_cloudy_high">&#xf07d;</string>
     <string name="wi_day_light_wind">&#xf0c4;</string>
+
     <string name="wi_night_clear">&#xf02e;</string>
     <string name="wi_night_alt_cloudy">&#xf086;</string>
     <string name="wi_night_alt_cloudy_gusts">&#xf022;</string>

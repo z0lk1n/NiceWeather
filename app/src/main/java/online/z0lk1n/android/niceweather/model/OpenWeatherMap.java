@@ -10,7 +10,7 @@ public class OpenWeatherMap {
     private Wind wind;
     private Clouds clouds;
     private Rain rain;
-    private int dt;
+    private long dt;
     private Sys sys;
     private int id;
     private String name;
@@ -19,7 +19,7 @@ public class OpenWeatherMap {
     public OpenWeatherMap() {
     }
 
-    public OpenWeatherMap(Coord coord, List<Weather> weatherList, String base, Main main, Wind wind, Clouds clouds, Rain rain, int dt, Sys sys, int id, String name, int cod) {
+    public OpenWeatherMap(Coord coord, List<Weather> weatherList, String base, Main main, Wind wind, Clouds clouds, Rain rain, long dt, Sys sys, int id, String name, int cod) {
         this.coord = coord;
         this.weatherList = weatherList;
         this.base = base;
@@ -62,7 +62,7 @@ public class OpenWeatherMap {
         return rain;
     }
 
-    public int getDt() {
+    public long getDt() {
         return dt;
     }
 
@@ -110,7 +110,7 @@ public class OpenWeatherMap {
         this.rain = rain;
     }
 
-    public void setDt(int dt) {
+    public void setDt(long dt) {
         this.dt = dt;
     }
 

@@ -1,24 +1,24 @@
 package online.z0lk1n.android.niceweather.model.WeatherIcon;
 
-import android.util.SparseArray;
+import android.util.SparseIntArray;
 
 public class Clouds {
-    private final static SparseArray<String> cloudsDay = new SparseArray<>();
-    private final static SparseArray<String> cloudsNight = new SparseArray<>();
+    private final static SparseIntArray cloudsDay = new SparseIntArray();
+    private final static SparseIntArray cloudsNight = new SparseIntArray();
 
     static {
-        cloudsDay.put(801, "");
-        cloudsDay.put(802, "");
-        cloudsDay.put(803, "");
-        cloudsDay.put(804, "");
+        cloudsDay.put(801, 0);
+        cloudsDay.put(802, 0);
+        cloudsDay.put(803, 0);
+        cloudsDay.put(804, 0);
 
-        cloudsNight.put(801, "");
-        cloudsNight.put(802, "");
-        cloudsNight.put(803, "");
-        cloudsNight.put(804, "");
+        cloudsNight.put(801, 0);
+        cloudsNight.put(802, 0);
+        cloudsNight.put(803, 0);
+        cloudsNight.put(804, 0);
     }
 
-    public static String getCloudsIcon(int id, PartOfDay partOfDay) {
+    public static int getCloudsIconId(int id, PartOfDay partOfDay) {
         return (partOfDay == PartOfDay.Daytime) ? cloudsDay.get(id) : cloudsNight.get(id);
     }
 }

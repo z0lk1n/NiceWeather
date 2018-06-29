@@ -14,6 +14,7 @@ import android.widget.TextView;
 import online.z0lk1n.android.niceweather.FragmentNavigator;
 import online.z0lk1n.android.niceweather.R;
 import online.z0lk1n.android.niceweather.model.OpenWeatherMap;
+import online.z0lk1n.android.niceweather.model.WeatherIcon.WeatherIconHandler;
 import online.z0lk1n.android.niceweather.util.HttpRequester;
 import online.z0lk1n.android.niceweather.util.Preferences;
 
@@ -29,6 +30,7 @@ public class DetailWeatherFragment extends Fragment {
     private TextView pressureView;
     private TextView pressureUnitView;
     private Preferences preferences;
+    private WeatherIconHandler weatherIconHandler;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
@@ -37,6 +39,7 @@ public class DetailWeatherFragment extends Fragment {
 
 
         preferences = Preferences.getInstance(getActivity());
+        weatherIconHandler = new WeatherIconHandler();
 
         cityTxtView = layout.findViewById(R.id.txtView_city);
         weatherIconTxtView = layout.findViewById(R.id.txtView_weather_icon);
@@ -68,6 +71,7 @@ public class DetailWeatherFragment extends Fragment {
         try {
             cityTxtView.setText(owm.getName());
             weatherIconTxtView.setText(R.string.wi_day_sunny);
+//            weatherIconTxtView.setText(weatherIconHandler.getWeatherIcon(getActivity(), ));
 
             if (preferences.isTemperature()) {
                 double tmp = (owm.getMain().getTemp() * 9 / 5) + 32;
@@ -97,7 +101,9 @@ public class DetailWeatherFragment extends Fragment {
                 pressureView.setText(String.format("%.0f", tmp));
                 pressureUnitView.setText(R.string.unit_torr);
             }
-
+            
+            String tmp = String.valueOf(owm.getWeatherList());
+            Log.d("WEATHER_ID", tmp);
         } catch (Exception e) {
             Log.e(getActivity().getPackageName(), "One or more fields not found in the JSON data");
         }

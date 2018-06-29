@@ -1,34 +1,34 @@
 package online.z0lk1n.android.niceweather.model.WeatherIcon;
 
-import android.util.SparseArray;
+import android.util.SparseIntArray;
 
 public class Drizzle {
-    private final static SparseArray<String> drizzleDay = new SparseArray<>();
-    private final static SparseArray<String> drizzleNight = new SparseArray<>();
+    private final static SparseIntArray drizzleDay = new SparseIntArray();
+    private final static SparseIntArray drizzleNight = new SparseIntArray();
 
     static {
-        drizzleDay.put(300, "");
-        drizzleDay.put(301, "");
-        drizzleDay.put(302, "");
-        drizzleDay.put(310, "");
-        drizzleDay.put(311, "");
-        drizzleDay.put(312, "");
-        drizzleDay.put(313, "");
-        drizzleDay.put(314, "");
-        drizzleDay.put(321, "");
+        drizzleDay.put(300, 0);
+        drizzleDay.put(301, 0);
+        drizzleDay.put(302, 0);
+        drizzleDay.put(310, 0);
+        drizzleDay.put(311, 0);
+        drizzleDay.put(312, 0);
+        drizzleDay.put(313, 0);
+        drizzleDay.put(314, 0);
+        drizzleDay.put(321, 0);
 
-        drizzleNight.put(300, "");
-        drizzleNight.put(301, "");
-        drizzleNight.put(302, "");
-        drizzleNight.put(310, "");
-        drizzleNight.put(311, "");
-        drizzleNight.put(312, "");
-        drizzleNight.put(313, "");
-        drizzleNight.put(314, "");
-        drizzleNight.put(321, "");
+        drizzleNight.put(300, 0);
+        drizzleNight.put(301, 0);
+        drizzleNight.put(302, 0);
+        drizzleNight.put(310, 0);
+        drizzleNight.put(311, 0);
+        drizzleNight.put(312, 0);
+        drizzleNight.put(313, 0);
+        drizzleNight.put(314, 0);
+        drizzleNight.put(321, 0);
     }
 
-    public static String getDrizzleIcon(int id, PartOfDay partOfDay) {
+    public static int getDrizzleIconId(int id, PartOfDay partOfDay) {
         return (partOfDay == PartOfDay.Daytime) ? drizzleDay.get(id) : drizzleNight.get(id);
     }
 }

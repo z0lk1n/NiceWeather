@@ -9,6 +9,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.InputType;
 import android.view.LayoutInflater;
 import android.view.Menu;
 import android.view.MenuInflater;
@@ -16,7 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
-import android.widget.LinearLayout;
 
 import online.z0lk1n.android.niceweather.FragmentNavigator;
 import online.z0lk1n.android.niceweather.R;
@@ -80,7 +80,7 @@ public class CitiesListFragment extends Fragment implements View.OnClickListener
     }
 
     private void showDetailWeather() {
-        FragmentNavigator fragmentNavigator = (FragmentNavigator)getActivity();
+        FragmentNavigator fragmentNavigator = (FragmentNavigator) getActivity();
         fragmentNavigator.showDetailWeather(citiesList.getCities().get(currentPosition));
     }
 
@@ -108,7 +108,7 @@ public class CitiesListFragment extends Fragment implements View.OnClickListener
 
     public void setupToolbar() {
         setHasOptionsMenu(true);
-        FragmentNavigator fragmentNavigator = (FragmentNavigator)getActivity();
+        FragmentNavigator fragmentNavigator = (FragmentNavigator) getActivity();
         fragmentNavigator.setupToolbar(getResources().getString(R.string.cities_list),
                 R.drawable.ic_toolbar_cursor);
     }
@@ -124,16 +124,13 @@ public class CitiesListFragment extends Fragment implements View.OnClickListener
         }
     }
 
-    private void showAddCityDialog(View v) {
-        final EditText input = new EditText(v.getContext());
-        LinearLayout.LayoutParams lp = new LinearLayout.LayoutParams(
-                LinearLayout.LayoutParams.MATCH_PARENT,
-                LinearLayout.LayoutParams.MATCH_PARENT);
-        input.setLayoutParams(lp);
-        AlertDialog.Builder builder = new AlertDialog.Builder(v.getContext())
+    private void showAddCityDialog(View view) {
+        final EditText input = new EditText(view.getContext());
+        input.setInputType(InputType.TYPE_CLASS_TEXT);
+        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext())
                 .setView(input)
                 .setTitle(R.string.dialog_add_city_title)
-                .setPositiveButton(R.string.dialog_add_city_button_add, new DialogInterface.OnClickListener() {
+                .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         String cityName = input.getText().toString().trim();
@@ -143,7 +140,7 @@ public class CitiesListFragment extends Fragment implements View.OnClickListener
                         }
                     }
                 })
-                .setNegativeButton(R.string.dialog_add_city_button_cancel, new DialogInterface.OnClickListener() {
+                .setNegativeButton(R.string.cancel, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.dismiss();

@@ -101,7 +101,7 @@ public class DetailWeatherFragment extends Fragment {
                 pressureView.setText(String.format("%.0f", tmp));
                 pressureUnitView.setText(R.string.unit_torr);
             }
-            
+
             String tmp = String.valueOf(owm.getWeatherList());
             Log.d("WEATHER_ID", tmp);
         } catch (Exception e) {

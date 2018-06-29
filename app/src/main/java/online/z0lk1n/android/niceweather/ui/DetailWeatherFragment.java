@@ -70,8 +70,12 @@ public class DetailWeatherFragment extends Fragment {
     private void renderWeather(OpenWeatherMap owm) {
         try {
             cityTxtView.setText(owm.getName());
-            weatherIconTxtView.setText(R.string.wi_day_sunny);
-//            weatherIconTxtView.setText(weatherIconHandler.getWeatherIcon(getActivity(), ));
+
+            weatherIconTxtView.setText(weatherIconHandler.getWeatherIcon(getActivity(),
+                    owm.getWeatherList().get(0).getId(),
+                    owm.getDt(),
+                    owm.getSys().getSunrise(),
+                    owm.getSys().getSunset()));
 
             if (preferences.isTemperature()) {
                 double tmp = (owm.getMain().getTemp() * 9 / 5) + 32;
@@ -102,8 +106,6 @@ public class DetailWeatherFragment extends Fragment {
                 pressureUnitView.setText(R.string.unit_torr);
             }
 
-            String tmp = String.valueOf(owm.getWeatherList());
-            Log.d("WEATHER_ID", tmp);
         } catch (Exception e) {
             Log.e(getActivity().getPackageName(), "One or more fields not found in the JSON data");
         }

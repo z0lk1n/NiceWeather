@@ -5,7 +5,6 @@ import android.content.Context;
 import online.z0lk1n.android.niceweather.R;
 
 public class WeatherIconHandler {
-    private int actualId;
     private long dt;
     private long sunrise;
     private long sunset;

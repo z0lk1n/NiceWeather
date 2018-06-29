@@ -1,17 +1,17 @@
 package online.z0lk1n.android.niceweather.model;
 
 public class Rain {
-    private int threeHour;
+    private double threeHour;
 
-    public void setThreeHour(int threeHour) {
+    public void setThreeHour(double threeHour) {
         this.threeHour = threeHour;
     }
 
-    public int getThreeHour() {
+    public double getThreeHour() {
         return threeHour;
     }
 
-    public Rain(int threeHour) {
+    public Rain(double threeHour) {
         this.threeHour = threeHour;
     }
 }

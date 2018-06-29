@@ -9,27 +9,27 @@ public class Thunderstorm {
     private final static SparseIntArray thunderstormNight = new SparseIntArray();
 
     static {
-        thunderstormDay.put(200, R.string.wi_day_sunny);
-        thunderstormDay.put(201, 0);
-        thunderstormDay.put(202, 0);
-        thunderstormDay.put(210, 0);
-        thunderstormDay.put(211, 0);
-        thunderstormDay.put(212, 0);
-        thunderstormDay.put(221, 0);
-        thunderstormDay.put(230, 0);
-        thunderstormDay.put(231, 0);
-        thunderstormDay.put(232, 0);
+        thunderstormDay.put(200, R.string.wi_thunderstorm);
+        thunderstormDay.put(201, R.string.wi_thunderstorm);
+        thunderstormDay.put(202, R.string.wi_thunderstorm);
+        thunderstormDay.put(210, R.string.wi_thunderstorm);
+        thunderstormDay.put(211, R.string.wi_thunderstorm);
+        thunderstormDay.put(212, R.string.wi_thunderstorm);
+        thunderstormDay.put(221, R.string.wi_thunderstorm);
+        thunderstormDay.put(230, R.string.wi_thunderstorm);
+        thunderstormDay.put(231, R.string.wi_thunderstorm);
+        thunderstormDay.put(232, R.string.wi_thunderstorm);
 
-        thunderstormNight.put(200, 0);
-        thunderstormNight.put(201, 0);
-        thunderstormNight.put(202, 0);
-        thunderstormNight.put(210, 0);
-        thunderstormNight.put(211, 0);
-        thunderstormNight.put(212, 0);
-        thunderstormNight.put(221, 0);
-        thunderstormNight.put(230, 0);
-        thunderstormNight.put(231, 0);
-        thunderstormNight.put(232, 0);
+        thunderstormNight.put(200, R.string.wi_thunderstorm);
+        thunderstormNight.put(201, R.string.wi_thunderstorm);
+        thunderstormNight.put(202, R.string.wi_thunderstorm);
+        thunderstormNight.put(210, R.string.wi_thunderstorm);
+        thunderstormNight.put(211, R.string.wi_thunderstorm);
+        thunderstormNight.put(212, R.string.wi_thunderstorm);
+        thunderstormNight.put(221, R.string.wi_thunderstorm);
+        thunderstormNight.put(230, R.string.wi_thunderstorm);
+        thunderstormNight.put(231, R.string.wi_thunderstorm);
+        thunderstormNight.put(232, R.string.wi_thunderstorm);
     }
 
     public static int getThunderstormIconId(int id, PartOfDay partOfDay) {

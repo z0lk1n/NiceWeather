@@ -14,8 +14,8 @@ import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
 
-import online.z0lk1n.android.niceweather.FragmentNavigator;
 import online.z0lk1n.android.niceweather.R;
+import online.z0lk1n.android.niceweather.interfaces.FragmentNavigator;
 import online.z0lk1n.android.niceweather.util.Preferences;
 
 public class SettingsFragment extends PreferenceFragment
@@ -33,22 +33,30 @@ public class SettingsFragment extends PreferenceFragment
     private SwitchPreference prefTemperature;
     private SwitchPreference prefWindSpeed;
     private SwitchPreference prefPressure;
+    private Preference prefRateApp;
+    private Preference prefAbout;
+    private Preference prefCredits;
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         addPreferencesFromResource(R.xml.preferences);
-
-        preferences = Preferences.getInstance(getActivity());
+        initialize();
+        initializeListener();
         setupToolbar();
+    }
 
+    private void initialize() {
+        preferences = Preferences.getInstance(getActivity());
         prefTemperature = (SwitchPreference) findPreference(KEY_PREF_TEMPERATURE);
         prefWindSpeed = (SwitchPreference) findPreference(KEY_PREF_WIND_SPEED);
         prefPressure = (SwitchPreference) findPreference(KEY_PREF_PRESSURE);
-        Preference prefRateApp = findPreference(KEY_PREF_RATE_APP);
-        Preference prefAbout = findPreference(KEY_PREF_ABOUT);
-        Preference prefCredits = findPreference(KEY_PREF_CREDITS);
+        prefRateApp = findPreference(KEY_PREF_RATE_APP);
+        prefAbout = findPreference(KEY_PREF_ABOUT);
+        prefCredits = findPreference(KEY_PREF_CREDITS);
+    }
 
+    private void initializeListener() {
         prefRateApp.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {

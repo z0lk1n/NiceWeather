@@ -18,8 +18,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
 
-import online.z0lk1n.android.niceweather.FragmentNavigator;
 import online.z0lk1n.android.niceweather.R;
+import online.z0lk1n.android.niceweather.interfaces.FragmentNavigator;
 import online.z0lk1n.android.niceweather.util.CitiesList;
 import online.z0lk1n.android.niceweather.util.RecyclerAdapter;
 
@@ -29,7 +29,6 @@ public class CitiesListFragment extends Fragment implements View.OnClickListener
     private RecyclerView recyclerView;
     private CitiesList citiesList;
     private int currentPosition = 0;
-    private FloatingActionButton fab;
     private RecyclerAdapter adapter;
 
     @SuppressLint("ResourceAsColor")
@@ -39,10 +38,8 @@ public class CitiesListFragment extends Fragment implements View.OnClickListener
                              @Nullable Bundle savedInstanceState) {
         View fragmentView = inflater.inflate(R.layout.fragment_cities_list, container, false);
         recyclerView = fragmentView.findViewById(R.id.recycler_view);
-
-        fab = fragmentView.findViewById(R.id.fab_add_city);
+        FloatingActionButton fab = fragmentView.findViewById(R.id.fab_add_city);
         fab.setOnClickListener(this);
-
         setupToolbar();
         return fragmentView;
     }

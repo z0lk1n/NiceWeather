@@ -1,6 +1,5 @@
 package online.z0lk1n.android.niceweather.util;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 
@@ -17,7 +16,6 @@ public class Preferences {
     private Preferences() {
     }
 
-    @SuppressLint("CommitPrefEdits")
     public static Preferences getInstance(Context context) {
         if (sharedPref == null) {
             sharedPref = context.getSharedPreferences(context.getPackageName(),

@@ -1,17 +1,18 @@
 package online.z0lk1n.android.niceweather.model;
 
-public class Clouds {
-    private int all;
+import com.google.gson.annotations.Expose;
+import com.google.gson.annotations.SerializedName;
 
-    public void setAll(int all) {
-        this.all = all;
-    }
+public class Clouds {
+    @SerializedName("all")
+    @Expose
+    private int all;
 
     public int getAll() {
         return all;
     }
 
-    public Clouds(int all) {
+    public void setAll(int all) {
         this.all = all;
     }
 }

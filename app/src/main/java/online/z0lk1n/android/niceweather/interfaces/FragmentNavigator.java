@@ -1,4 +1,4 @@
-package online.z0lk1n.android.niceweather;
+package online.z0lk1n.android.niceweather.interfaces;
 
 public interface FragmentNavigator {
     void showDetailWeather(String city);

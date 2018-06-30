@@ -11,8 +11,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
-import online.z0lk1n.android.niceweather.FragmentNavigator;
 import online.z0lk1n.android.niceweather.R;
+import online.z0lk1n.android.niceweather.interfaces.FragmentNavigator;
 import online.z0lk1n.android.niceweather.model.OpenWeatherMap;
 import online.z0lk1n.android.niceweather.model.WeatherIcon.WeatherIconHandler;
 import online.z0lk1n.android.niceweather.util.HttpRequester;
@@ -36,25 +36,24 @@ public class DetailWeatherFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View layout = inflater.inflate(R.layout.fragment_detail_weather, container, false);
+        initialize(layout);
+        setupToolbar();
+        updateWeatherData(preferences.getCity());
+        return layout;
+    }
 
-
+    private void initialize(View view) {
         preferences = Preferences.getInstance(getActivity());
         weatherIconHandler = new WeatherIconHandler();
-
-        cityTxtView = layout.findViewById(R.id.txtView_city);
-        weatherIconTxtView = layout.findViewById(R.id.txtView_weather_icon);
-        airHumidityView = layout.findViewById(R.id.txtView_air_humidity);
-        temperatureView = layout.findViewById(R.id.txtView_temperature);
-        temperatureUnitView = layout.findViewById(R.id.txtView_temperature_unit);
-        windSpeedView = layout.findViewById(R.id.txtView_wind_speed);
-        windSpeedUnitView = layout.findViewById(R.id.txtView_wind_speed_unit);
-        pressureView = layout.findViewById(R.id.txtView_pressure);
-        pressureUnitView = layout.findViewById(R.id.txtView_pressure_unit);
-
-        updateWeatherData(preferences.getCity());
-        setupToolbar();
-
-        return layout;
+        cityTxtView = view.findViewById(R.id.txtView_city);
+        weatherIconTxtView = view.findViewById(R.id.txtView_weather_icon);
+        airHumidityView = view.findViewById(R.id.txtView_air_humidity);
+        temperatureView = view.findViewById(R.id.txtView_temperature);
+        temperatureUnitView = view.findViewById(R.id.txtView_temperature_unit);
+        windSpeedView = view.findViewById(R.id.txtView_wind_speed);
+        windSpeedUnitView = view.findViewById(R.id.txtView_wind_speed_unit);
+        pressureView = view.findViewById(R.id.txtView_pressure);
+        pressureUnitView = view.findViewById(R.id.txtView_pressure_unit);
     }
 
     private void updateWeatherData(String city) {
@@ -64,7 +63,7 @@ public class DetailWeatherFragment extends Fragment {
                 renderWeather(owm);
             }
         });
-        requester.run(getActivity(), city);
+        requester.requestRetrofit(getActivity(), city);
     }
 
     private void renderWeather(OpenWeatherMap owm) {
@@ -72,13 +71,13 @@ public class DetailWeatherFragment extends Fragment {
             cityTxtView.setText(owm.getName());
 
             weatherIconTxtView.setText(weatherIconHandler.getWeatherIcon(getActivity(),
-                    owm.getWeatherList().get(0).getId(),
+                    owm.getWeather()[0].getId(),
                     owm.getDt(),
                     owm.getSys().getSunrise(),
                     owm.getSys().getSunset()));
 
             if (preferences.isTemperature()) {
-                double tmp = (owm.getMain().getTemp() * 9 / 5) + 32;
+                double tmp = convertCelsiusToFahrenheit(owm.getMain().getTemp());
                 temperatureView.setText(String.format("%.1f", tmp));
                 temperatureUnitView.setText(R.string.unit_fahrenheit);
             } else {
@@ -87,7 +86,7 @@ public class DetailWeatherFragment extends Fragment {
             }
 
             if (preferences.isWindSpeed()) {
-                double tmp = (owm.getWind().getSpeed() * 36) / 10;
+                double tmp = convertMsToKmh(owm.getWind().getSpeed());
                 windSpeedView.setText(String.format("%.1f", tmp));
                 windSpeedUnitView.setText(R.string.unit_km_h);
             } else {
@@ -98,10 +97,10 @@ public class DetailWeatherFragment extends Fragment {
             airHumidityView.setText(String.valueOf(owm.getMain().getHumidity()));
 
             if (preferences.isPressure()) {
-                pressureView.setText(String.format("%.0f", owm.getMain().getPressure()));
+                pressureView.setText(String.valueOf(owm.getMain().getPressure()));
                 pressureUnitView.setText(R.string.unit_pascal);
             } else {
-                double tmp = owm.getMain().getPressure() * 0.75006375541921;
+                double tmp = convertPascalToTorr(owm.getMain().getPressure());
                 pressureView.setText(String.format("%.0f", tmp));
                 pressureUnitView.setText(R.string.unit_torr);
             }
@@ -140,5 +139,17 @@ public class DetailWeatherFragment extends Fragment {
         FragmentNavigator fragmentNavigator = (FragmentNavigator) getActivity();
         fragmentNavigator.setupToolbar(getResources().getString(R.string.app_name),
                 R.drawable.ic_toolbar_cities_list);
+    }
+
+    private double convertCelsiusToFahrenheit(double value) {
+        return (value * 9 / 5) + 32;
+    }
+
+    private double convertMsToKmh(double value) {
+        return (value * 36) / 10;
+    }
+
+    private double convertPascalToTorr(double value) {
+        return value * 0.75006375541921;
     }
 }

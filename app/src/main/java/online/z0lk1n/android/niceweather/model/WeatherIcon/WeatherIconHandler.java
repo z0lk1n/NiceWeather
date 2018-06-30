@@ -9,9 +9,6 @@ public class WeatherIconHandler {
     private long sunrise;
     private long sunset;
 
-    public WeatherIconHandler() {
-    }
-
     public String getWeatherIcon(Context context, int id, long dt, long sunrise, long sunset) {
         this.dt = dt;
         this.sunrise = sunrise;

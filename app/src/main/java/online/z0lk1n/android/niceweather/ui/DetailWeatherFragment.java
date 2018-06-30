@@ -12,10 +12,9 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import online.z0lk1n.android.niceweather.R;
-import online.z0lk1n.android.niceweather.interfaces.FragmentNavigator;
 import online.z0lk1n.android.niceweather.model.OpenWeatherMap;
 import online.z0lk1n.android.niceweather.model.WeatherIcon.WeatherIconHandler;
-import online.z0lk1n.android.niceweather.util.HttpRequester;
+import online.z0lk1n.android.niceweather.network.WeatherDataReceiver;
 import online.z0lk1n.android.niceweather.util.Preferences;
 
 public class DetailWeatherFragment extends Fragment {
@@ -57,7 +56,7 @@ public class DetailWeatherFragment extends Fragment {
     }
 
     private void updateWeatherData(String city) {
-        HttpRequester requester = new HttpRequester(new HttpRequester.OnResponseCompleted() {
+        WeatherDataReceiver requester = new WeatherDataReceiver(new WeatherDataReceiver.OnResponseCompleted() {
             @Override
             public void onCompleted(OpenWeatherMap owm) {
                 renderWeather(owm);

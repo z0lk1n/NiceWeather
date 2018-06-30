@@ -19,7 +19,6 @@ import android.view.ViewGroup;
 import android.widget.EditText;
 
 import online.z0lk1n.android.niceweather.R;
-import online.z0lk1n.android.niceweather.interfaces.FragmentNavigator;
 import online.z0lk1n.android.niceweather.util.CitiesList;
 import online.z0lk1n.android.niceweather.util.RecyclerAdapter;
 

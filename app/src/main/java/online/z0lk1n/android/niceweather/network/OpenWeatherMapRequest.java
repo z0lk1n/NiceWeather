@@ -1,4 +1,4 @@
-package online.z0lk1n.android.niceweather.interfaces;
+package online.z0lk1n.android.niceweather.network;
 
 import online.z0lk1n.android.niceweather.model.OpenWeatherMap;
 import retrofit2.Call;

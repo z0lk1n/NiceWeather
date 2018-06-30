@@ -15,7 +15,6 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import online.z0lk1n.android.niceweather.R;
-import online.z0lk1n.android.niceweather.interfaces.FragmentNavigator;
 import online.z0lk1n.android.niceweather.util.Preferences;
 
 public class SettingsFragment extends PreferenceFragment

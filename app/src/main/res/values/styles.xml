@@ -28,6 +28,11 @@
         <item name="searchViewStyle">@style/AppSearchViewStyle</item>
     </style>
 
+    <style name="MyDialogTheme" parent="Theme.AppCompat.Light.Dialog.Alert">
+        <item name="android:background">@color/colorBlack</item>
+        <item name="android:textColorPrimary">@color/colorBrighterAlizarinRed</item>
+    </style>
+
     <style name="AppSearchViewStyle" parent="Widget.AppCompat.SearchView">
         <item name="android:textCursorDrawable">@drawable/ic_toolbar_cursor</item>
         <item name="queryBackground">@android:color/transparent</item>

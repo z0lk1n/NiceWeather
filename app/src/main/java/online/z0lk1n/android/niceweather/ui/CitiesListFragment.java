@@ -39,6 +39,7 @@ public class CitiesListFragment extends Fragment implements View.OnClickListener
         recyclerView = fragmentView.findViewById(R.id.recycler_view);
         FloatingActionButton fab = fragmentView.findViewById(R.id.fab_add_city);
         fab.setOnClickListener(this);
+//        registerForContextMenu(recyclerView);
         setupToolbar();
         return fragmentView;
     }
@@ -84,6 +85,11 @@ public class CitiesListFragment extends Fragment implements View.OnClickListener
         this.citiesList.setCity(city);
     }
 
+    public void removeCity(int city) {
+        this.citiesList.removeCity(city);
+    }
+
+
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
@@ -97,10 +103,28 @@ public class CitiesListFragment extends Fragment implements View.OnClickListener
                 getFragmentManager().popBackStack();
                 return true;
             default:
-                break;
+                return super.onOptionsItemSelected(item);
         }
-        return super.onOptionsItemSelected(item);
     }
+
+//    @Override
+//    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
+//        super.onCreateContextMenu(menu, v, menuInfo);
+//        MenuInflater inflater = getActivity().getMenuInflater();
+//        inflater.inflate(R.menu.context_menu, menu);
+//    }
+//
+//    @Override
+//    public boolean onContextItemSelected(MenuItem item) {
+//        switch (item.getItemId()) {
+//            case R.id.remove_city:
+//                removeCity(currentPosition);
+//                adapter.notifyDataSetChanged();
+//                return true;
+//            default:
+//                return super.onContextItemSelected(item);
+//        }
+//    }
 
     public void setupToolbar() {
         setHasOptionsMenu(true);
@@ -123,7 +147,8 @@ public class CitiesListFragment extends Fragment implements View.OnClickListener
     private void showAddCityDialog(View view) {
         final EditText input = new EditText(view.getContext());
         input.setInputType(InputType.TYPE_CLASS_TEXT);
-        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext())
+        input.setTextColor(getResources().getColor(R.color.colorBrighterAlizarinRed));
+        AlertDialog.Builder builder = new AlertDialog.Builder(view.getContext(), R.style.MyDialogTheme)
                 .setView(input)
                 .setTitle(R.string.dialog_add_city_title)
                 .setPositiveButton(R.string.ok, new DialogInterface.OnClickListener() {

@@ -26,6 +26,7 @@
     <string name="detail_weather">detail weather</string>
     <string name="cities_list">Cities list</string>
     <string name="search_hint">City</string>
+    <string name="last_update">Last update:</string>
 
     <string name="unit_percent" translatable="false">%</string>
     <string name="unit_celsius" translatable="false">°C</string>
@@ -54,6 +55,7 @@
     <string name="credits">Credits</string>
     <string name="dialog_add_city_title">Please input city name</string>
     <string name="cancel">Cancel</string>
+    <string name="about_title">About the developer</string>
 
     //Weather Icons
     <string name="wi_strong_wind">&#xf050;</string>
@@ -369,4 +371,8 @@
     <string name="wi_owm_night_905">&#xf021;</string>
     <string name="wi_owm_night_906">&#xf024;</string>
     <string name="wi_owm_night_957">&#xf050;</string>
+    <string name="comma">,</string>
+    <string name="about_message">Hello! My name is Vitaly Zolkin.</string>
+    <string name="credits_message">The Weather Icons project created and maintained by Erik Flowers. v1.0 artwork by Lukas Bischoff. v1.1 to 2.0 artwork by Erik Flowers. Weather Icons licensed under SIL OFL 1.1, Code licensed under MIT License, Documentation licensed under CC BY 3.0</string>
+    <string name="remove_city">Remove city</string>
 </resources>

@@ -9,7 +9,12 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.text.DateFormat;
+import java.util.Date;
 
 import online.z0lk1n.android.niceweather.R;
 import online.z0lk1n.android.niceweather.model.OpenWeatherMap;
@@ -28,6 +33,11 @@ public class DetailWeatherFragment extends Fragment {
     private TextView windSpeedUnitView;
     private TextView pressureView;
     private TextView pressureUnitView;
+    private TextView lastUpdateTxtView;
+    private TextView windDirectionView;
+    private TextView windDirectionIconView;
+    private TextView weatherDescriptionView;
+    private Button refreshBtn;
     private Preferences preferences;
     private WeatherIconHandler weatherIconHandler;
 
@@ -53,6 +63,18 @@ public class DetailWeatherFragment extends Fragment {
         windSpeedUnitView = view.findViewById(R.id.txtView_wind_speed_unit);
         pressureView = view.findViewById(R.id.txtView_pressure);
         pressureUnitView = view.findViewById(R.id.txtView_pressure_unit);
+        lastUpdateTxtView = view.findViewById(R.id.txtView_last_update);
+        windDirectionView = view.findViewById(R.id.txtView_wind_direction);
+        windDirectionIconView = view.findViewById(R.id.txtView_wind_direction_icon);
+        weatherDescriptionView = view.findViewById(R.id.txtView_weather_description);
+        refreshBtn = view.findViewById(R.id.btn_refresh);
+
+        refreshBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateWeatherData(cityTxtView.getText().toString());
+            }
+        });
     }
 
     private void updateWeatherData(String city) {
@@ -61,12 +83,24 @@ public class DetailWeatherFragment extends Fragment {
             public void onCompleted(OpenWeatherMap owm) {
                 renderWeather(owm);
             }
+
+            @Override
+            public void onFailure(String error) {
+                Toast.makeText(getActivity(), error, Toast.LENGTH_LONG).show();
+            }
         });
         requester.requestRetrofit(getActivity(), city);
     }
 
     private void renderWeather(OpenWeatherMap owm) {
         try {
+
+            StringBuilder sb = new StringBuilder();
+            DateFormat df = DateFormat.getDateTimeInstance();
+            sb.append(getResources().getString(R.string.last_update))
+                    .append(" ").append(df.format(new Date(owm.getDt() * 1000)));
+            lastUpdateTxtView.setText(sb.toString());
+
             cityTxtView.setText(owm.getName());
 
             weatherIconTxtView.setText(weatherIconHandler.getWeatherIcon(getActivity(),
@@ -74,6 +108,8 @@ public class DetailWeatherFragment extends Fragment {
                     owm.getDt(),
                     owm.getSys().getSunrise(),
                     owm.getSys().getSunset()));
+
+            weatherDescriptionView.setText(owm.getWeather()[0].getDescription());
 
             if (preferences.isTemperature()) {
                 double tmp = convertCelsiusToFahrenheit(owm.getMain().getTemp());
@@ -92,6 +128,11 @@ public class DetailWeatherFragment extends Fragment {
                 windSpeedView.setText(String.format("%.1f", owm.getWind().getSpeed()));
                 windSpeedUnitView.setText(R.string.unit_m_s);
             }
+
+            windDirectionView.setText(getDescriptionWindDirection(owm.getWind().getDeg()));
+
+            windDirectionIconView.setText(weatherIconHandler.getWindDirectionIcon(getActivity(),
+                    owm.getWind().getDeg()));
 
             airHumidityView.setText(String.valueOf(owm.getMain().getHumidity()));
 
@@ -150,5 +191,28 @@ public class DetailWeatherFragment extends Fragment {
 
     private double convertPascalToTorr(double value) {
         return value * 0.75006375541921;
+    }
+
+    private String getDescriptionWindDirection(double deg) {
+        String description;
+
+        if (deg >= 23 && deg < 68) {
+            description = "NE";
+        } else if (deg >= 68 && deg < 113) {
+            description = "E";
+        } else if (deg >= 113 && deg < 158) {
+            description = "SE";
+        } else if (deg >= 158 && deg < 203) {
+            description = "S";
+        } else if (deg >= 203 && deg < 248) {
+            description = "SW";
+        } else if (deg >= 248 && deg < 293) {
+            description = "W";
+        } else if (deg >= 293 && deg < 338) {
+            description = "NW";
+        } else {
+            description = "N";
+        }
+        return description;
     }
 }

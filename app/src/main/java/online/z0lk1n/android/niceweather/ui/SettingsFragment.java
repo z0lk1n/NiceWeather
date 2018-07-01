@@ -10,6 +10,7 @@ import android.preference.Preference;
 import android.preference.PreferenceFragment;
 import android.preference.SwitchPreference;
 import android.support.annotation.Nullable;
+import android.support.v7.app.AlertDialog;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
@@ -67,7 +68,7 @@ public class SettingsFragment extends PreferenceFragment
         prefAbout.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-
+                showAboutDialog();
                 return true;
             }
         });
@@ -75,7 +76,7 @@ public class SettingsFragment extends PreferenceFragment
         prefCredits.setOnPreferenceClickListener(new Preference.OnPreferenceClickListener() {
             @Override
             public boolean onPreferenceClick(Preference preference) {
-
+                showCreditsDialog();
                 return true;
             }
         });
@@ -153,5 +154,21 @@ public class SettingsFragment extends PreferenceFragment
                     Uri.parse("http://play.google.com/store/apps/details?id=" +
                             activity.getPackageName())));
         }
+    }
+
+    private void showAboutDialog() {
+        new AlertDialog.Builder(getActivity(), R.style.MyDialogTheme)
+                .setTitle(R.string.about_title)
+                .setMessage(R.string.about_message)
+                .setPositiveButton(R.string.ok, null)
+                .show();
+    }
+
+    private void showCreditsDialog() {
+        new AlertDialog.Builder(getActivity(), R.style.MyDialogTheme)
+                .setTitle(R.string.credits)
+                .setMessage(R.string.credits_message)
+                .setPositiveButton(R.string.ok, null)
+                .show();
     }
 }

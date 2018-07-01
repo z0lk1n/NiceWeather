@@ -36,6 +36,30 @@ public class WeatherIconHandler {
         return icon;
     }
 
+    public String getWindDirectionIcon(Context context, double deg) {
+        String icon;
+
+        if (deg >= 23 && deg < 68) {
+            icon = context.getString(WindDirection.getWindDirectionIconId(1));
+        } else if (deg >= 68 && deg < 113) {
+            icon = context.getString(WindDirection.getWindDirectionIconId(2));
+        } else if (deg >= 113 && deg < 158) {
+            icon = context.getString(WindDirection.getWindDirectionIconId(3));
+        } else if (deg >= 158 && deg < 203) {
+            icon = context.getString(WindDirection.getWindDirectionIconId(4));
+        } else if (deg >= 203 && deg < 248) {
+            icon = context.getString(WindDirection.getWindDirectionIconId(5));
+        } else if (deg >= 248 && deg < 293) {
+            icon = context.getString(WindDirection.getWindDirectionIconId(6));
+        } else if (deg >= 293 && deg < 338) {
+            icon = context.getString(WindDirection.getWindDirectionIconId(7));
+        } else {
+            icon = context.getString(WindDirection.getWindDirectionIconId(0));
+        }
+
+        return icon;
+    }
+
     private PartOfDay getPartOfDay() {
         return (dt >= sunrise && dt < sunset) ? PartOfDay.Daytime : PartOfDay.Nighttime;
     }

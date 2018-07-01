@@ -18,9 +18,9 @@
         android:layout_marginEnd="@dimen/cardview_item_margin"
         android:layout_marginStart="@dimen/cardview_item_margin"
         android:layout_marginTop="@dimen/cardview_item_margin"
-        android:background="@color/colorBlack" >
+        android:background="@color/colorBlack">
 
-        <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
             xmlns:app="http://schemas.android.com/apk/res-auto"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -30,146 +30,214 @@
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingTop="@dimen/activity_vertical_margin">
 
+            <!--last update-->
+            <TextView
+                android:id="@+id/txtView_last_update"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/open_sans_light"
+                android:textSize="@dimen/last_update_text"
+                app:layout_constraintLeft_toLeftOf="parent" />
+            <Button
+                android:id="@+id/btn_refresh"
+                android:layout_width="@dimen/width_refresh_button"
+                android:layout_height="@dimen/height_refresh_button"
+                android:fontFamily="@font/weather_icons"
+                android:padding="@dimen/padding_refresh_button"
+                android:text="@string/wi_refresh"
+                android:textSize="@dimen/last_update_text"
+                android:background="@color/colorBlack"
+                app:layout_constraintBaseline_toBaselineOf="@+id/txtView_last_update"
+                app:layout_constraintStart_toEndOf="@id/txtView_last_update" />
+
+            <!--city-->
             <TextView
                 android:id="@+id/txtView_city"
-                android:layout_width="match_parent"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:gravity="center" />
+                android:textSize="@dimen/city_text"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtView_last_update" />
 
-            <LinearLayout
-                android:id="@+id/linLay_temperature"
-                android:layout_width="match_parent"
+            <!--temperature-->
+            <TextView
+                android:id="@+id/txtView_temperature"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txtView_city"
-                android:gravity="center"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtView_temperature"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:id="@+id/txtView_temperature_unit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-                <TextView
-                    android:id="@+id/txtView_weather_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/main_margin"
-                    android:fontFamily="@font/weather_icons"
-                    android:textSize="48sp" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linLay_wind_speed"
-                android:layout_width="match_parent"
+                android:textSize="@dimen/temperature_text"
+                app:layout_constraintEnd_toStartOf="@+id/txtView_temperature_unit"
+                app:layout_constraintTop_toBottomOf="@id/txtView_city" />
+            <TextView
+                android:id="@+id/txtView_temperature_unit"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/linLay_temperature"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtView_wind_speed_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/weather_icons"
-                    android:text="@string/wi_strong_wind"
-                    android:textSize="36sp" />
-
-                <TextView
-                    android:id="@+id/txtView_wind_speed_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/main_margin"
-                    android:text="@string/wind_speed" />
-
-                <TextView
-                    android:id="@+id/txtView_wind_speed"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/main_margin" />
-
-                <TextView
-                    android:id="@+id/txtView_wind_speed_unit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linLay_air_humidity"
-                android:layout_width="match_parent"
+                android:textSize="@dimen/temperature_text"
+                android:layout_marginStart="@dimen/main_margin"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtView_city" />
+            <TextView
+                android:id="@+id/txtView_weather_icon"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/linLay_wind_speed"
-                android:orientation="horizontal">
-
-                <TextView
-                    android:id="@+id/txtView_air_humidity_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/weather_icons"
-                    android:text="@string/wi_humidity"
-                    android:textSize="36sp" />
-
-                <TextView
-                    android:id="@+id/txtView_air_humidity_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/main_margin"
-                    android:text="@string/air_humidity" />
-
-                <TextView
-                    android:id="@+id/txtView_air_humidity"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/main_margin" />
-
-                <TextView
-                    android:id="@+id/txtView_air_humidity_unit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/unit_percent" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@+id/linLay_pressure"
-                android:layout_width="match_parent"
+                android:layout_marginStart="@dimen/main_margin"
+                android:fontFamily="@font/weather_icons"
+                android:textSize="@dimen/temperature_text"
+                app:layout_constraintStart_toEndOf="@id/txtView_temperature_unit"
+                app:layout_constraintTop_toBottomOf="@id/txtView_city" />
+            <TextView
+                android:id="@+id/txtView_weather_description"
+                android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/linLay_air_humidity"
-                android:orientation="horizontal">
+                android:textSize="@dimen/wind_humidity_pressure_text"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/txtView_temperature_unit" />
 
-                <TextView
-                    android:id="@+id/txtView_pressure_icon"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/weather_icons"
-                    android:text="@string/wi_barometer"
-                    android:textSize="36sp" />
+            <!--wind speed-->
+            <TextView
+                android:id="@+id/txtView_wind_speed_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/weather_icons"
+                android:text="@string/wi_strong_wind"
+                android:textSize="@dimen/wind_humidity_pressure_text"
+                app:layout_constraintTop_toBottomOf="@id/txtView_weather_description" />
+            <TextView
+                android:id="@+id/txtView_wind_speed_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/main_margin"
+                android:textSize="@dimen/wind_humidity_pressure_text"
+                android:text="@string/wind_speed"
+                app:layout_constraintBaseline_toBaselineOf="@+id/txtView_wind_speed_icon"
+                app:layout_constraintStart_toEndOf="@id/txtView_wind_speed_icon"
+                app:layout_constraintTop_toBottomOf="@id/txtView_weather_description" />
+            <TextView
+                android:id="@+id/txtView_wind_speed"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/wind_humidity_pressure_text"
+                android:layout_marginStart="@dimen/main_margin"
+                app:layout_constraintBaseline_toBaselineOf="@+id/txtView_wind_speed_label"
+                app:layout_constraintStart_toEndOf="@id/txtView_wind_speed_label"
+                app:layout_constraintTop_toBottomOf="@id/txtView_weather_description" />
+            <TextView
+                android:id="@+id/txtView_wind_speed_unit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/main_margin"
+                android:textSize="@dimen/wind_humidity_pressure_text"
+                app:layout_constraintBaseline_toBaselineOf="@+id/txtView_wind_speed"
+                app:layout_constraintStart_toEndOf="@id/txtView_wind_speed"
+                app:layout_constraintTop_toBottomOf="@id/txtView_weather_description" />
+            <TextView
+                android:id="@+id/txtView_comma"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/comma"
+                android:textSize="@dimen/wind_humidity_pressure_text"
+                app:layout_constraintBaseline_toBaselineOf="@+id/txtView_wind_speed_unit"
+                app:layout_constraintStart_toEndOf="@id/txtView_wind_speed_unit"
+                app:layout_constraintTop_toBottomOf="@id/txtView_weather_description" />
+            <TextView
+                android:id="@+id/txtView_wind_direction"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="@dimen/wind_humidity_pressure_text"
+                android:layout_marginStart="@dimen/main_margin"
+                app:layout_constraintBaseline_toBaselineOf="@+id/txtView_wind_speed_unit"
+                app:layout_constraintStart_toEndOf="@id/txtView_wind_speed_unit"
+                app:layout_constraintTop_toBottomOf="@id/txtView_weather_description" />
+            <TextView
+                android:id="@+id/txtView_wind_direction_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/weather_icons"
+                android:layout_marginStart="@dimen/main_margin"
+                android:textSize="@dimen/direction_icon_size"
+                app:layout_constraintTop_toBottomOf="@id/txtView_weather_description"
+                app:layout_constraintBaseline_toBaselineOf="@+id/txtView_wind_direction"
+                app:layout_constraintStart_toEndOf="@id/txtView_wind_direction"/>
 
-                <TextView
-                    android:id="@+id/txtView_pressure_label"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/main_margin"
-                    android:text="@string/pressure" />
+            <!--air humidity-->
+            <TextView
+                android:id="@+id/txtView_air_humidity_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/weather_icons"
+                android:text="@string/wi_humidity"
+                android:textSize="@dimen/wind_humidity_pressure_text"
+                app:layout_constraintTop_toBottomOf="@id/txtView_wind_speed_icon" />
+            <TextView
+                android:id="@+id/txtView_air_humidity_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/main_margin"
+                android:text="@string/air_humidity"
+                android:textSize="@dimen/wind_humidity_pressure_text"
+                app:layout_constraintBaseline_toBaselineOf="@+id/txtView_air_humidity_icon"
+                app:layout_constraintStart_toEndOf="@+id/txtView_air_humidity_icon"
+                app:layout_constraintTop_toBottomOf="@id/txtView_wind_speed_icon" />
+            <TextView
+                android:id="@+id/txtView_air_humidity"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/main_margin"
+                android:textSize="@dimen/wind_humidity_pressure_text"
+                app:layout_constraintBaseline_toBaselineOf="@+id/txtView_air_humidity_label"
+                app:layout_constraintStart_toEndOf="@id/txtView_air_humidity_label"
+                app:layout_constraintTop_toBottomOf="@id/txtView_wind_speed_icon" />
+            <TextView
+                android:id="@+id/txtView_air_humidity_unit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/unit_percent"
+                android:layout_marginStart="@dimen/main_margin"
+                android:textSize="@dimen/wind_humidity_pressure_text"
+                app:layout_constraintBaseline_toBaselineOf="@+id/txtView_air_humidity"
+                app:layout_constraintStart_toEndOf="@id/txtView_air_humidity"
+                app:layout_constraintTop_toBottomOf="@id/txtView_wind_speed_icon" />
 
-                <TextView
-                    android:id="@+id/txtView_pressure"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/main_margin" />
+            <!--pressure-->
+            <TextView
+                android:id="@+id/txtView_pressure_icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/weather_icons"
+                android:text="@string/wi_barometer"
+                android:textSize="@dimen/wind_humidity_pressure_text"
+                app:layout_constraintTop_toBottomOf="@id/txtView_air_humidity_icon" />
+            <TextView
+                android:id="@+id/txtView_pressure_label"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/main_margin"
+                android:text="@string/pressure"
+                android:textSize="@dimen/wind_humidity_pressure_text"
+                app:layout_constraintBaseline_toBaselineOf="@+id/txtView_pressure_icon"
+                app:layout_constraintStart_toEndOf="@id/txtView_pressure_icon"
+                app:layout_constraintTop_toBottomOf="@id/txtView_air_humidity_icon" />
+            <TextView
+                android:id="@+id/txtView_pressure"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/main_margin"
+                android:textSize="@dimen/wind_humidity_pressure_text"
+                app:layout_constraintBaseline_toBaselineOf="@+id/txtView_pressure_label"
+                app:layout_constraintStart_toEndOf="@id/txtView_pressure_label"
+                app:layout_constraintTop_toBottomOf="@id/txtView_air_humidity_icon" />
+            <TextView
+                android:id="@+id/txtView_pressure_unit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/main_margin"
+                android:textSize="@dimen/wind_humidity_pressure_text"
+                app:layout_constraintBaseline_toBaselineOf="@+id/txtView_pressure"
+                app:layout_constraintStart_toEndOf="@id/txtView_pressure"
+                app:layout_constraintTop_toBottomOf="@id/txtView_air_humidity_icon" />
 
-                <TextView
-                    android:id="@+id/txtView_pressure_unit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-            </LinearLayout>
-
-        </RelativeLayout>
+        </android.support.constraint.ConstraintLayout>
     </FrameLayout>
 </android.support.v7.widget.CardView>

@@ -19,4 +19,8 @@ public class CitiesList {
     public void setCity(String city) {
         this.cities.add(0, city);
     }
+
+    public void removeCity(int city) {
+        this.cities.remove(city);
+    }
 }

@@ -85,8 +85,6 @@ public class MainActivity extends AppCompatActivity implements FragmentNavigator
 /*
 TODO 2.Доделать тему приложения
 TODO 3.Добавить к свичам текстовое описание
-TODO 4.Добавить фрагмент с правами на иконки
-TODO 5.Добавить фрагмент о разработчике
 TODO 8.Добавить в список городов контекстное меню с удалением
 TODO 9.Поменять префы
  */

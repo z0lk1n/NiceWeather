@@ -44,7 +44,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         public ViewHolder(View itemView) {
             super(itemView);
             textView = itemView.findViewById(R.id.txtView_item);
-
             textView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
@@ -61,7 +60,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         this.itemClickListener = itemClickListener;
     }
 
-    public void setNewArray(List<String> data)  {
+    public void setNewArray(List<String> data) {
         this.data = data;
         notifyDataSetChanged();
     }

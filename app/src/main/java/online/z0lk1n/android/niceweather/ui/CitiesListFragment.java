@@ -108,13 +108,6 @@ public class CitiesListFragment extends Fragment implements View.OnClickListener
     }
 
 //    @Override
-//    public void onCreateContextMenu(ContextMenu menu, View v, ContextMenu.ContextMenuInfo menuInfo) {
-//        super.onCreateContextMenu(menu, v, menuInfo);
-//        MenuInflater inflater = getActivity().getMenuInflater();
-//        inflater.inflate(R.menu.context_menu, menu);
-//    }
-//
-//    @Override
 //    public boolean onContextItemSelected(MenuItem item) {
 //        switch (item.getItemId()) {
 //            case R.id.remove_city:

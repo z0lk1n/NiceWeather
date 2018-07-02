@@ -52,7 +52,7 @@ public class DetailWeatherFragment extends Fragment {
     }
 
     private void initialize(View view) {
-        preferences = Preferences.getInstance(getActivity());
+        preferences = new Preferences(getActivity());
         weatherIconHandler = new WeatherIconHandler();
         cityTxtView = view.findViewById(R.id.txtView_city);
         weatherIconTxtView = view.findViewById(R.id.txtView_weather_icon);

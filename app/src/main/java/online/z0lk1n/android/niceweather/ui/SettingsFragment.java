@@ -47,7 +47,7 @@ public class SettingsFragment extends PreferenceFragment
     }
 
     private void initialize() {
-        preferences = Preferences.getInstance(getActivity());
+        preferences = new Preferences(getActivity());
         prefTemperature = (SwitchPreference) findPreference(KEY_PREF_TEMPERATURE);
         prefWindSpeed = (SwitchPreference) findPreference(KEY_PREF_WIND_SPEED);
         prefPressure = (SwitchPreference) findPreference(KEY_PREF_PRESSURE);

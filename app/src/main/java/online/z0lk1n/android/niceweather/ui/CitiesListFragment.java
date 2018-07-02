@@ -85,9 +85,9 @@ public class CitiesListFragment extends Fragment implements View.OnClickListener
         this.citiesList.setCity(city);
     }
 
-    public void removeCity(int city) {
-        this.citiesList.removeCity(city);
-    }
+//    public void removeCity(int city) {
+//        this.citiesList.removeCity(city);
+//    }
 
 
     @Override

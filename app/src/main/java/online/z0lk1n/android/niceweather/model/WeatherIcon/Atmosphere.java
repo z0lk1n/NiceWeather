@@ -4,7 +4,7 @@ import android.util.SparseIntArray;
 
 import online.z0lk1n.android.niceweather.R;
 
-public class Atmosphere {
+public final class Atmosphere {
     private final static SparseIntArray atmosphereDay = new SparseIntArray();
     private final static SparseIntArray atmosphereNight = new SparseIntArray();
 

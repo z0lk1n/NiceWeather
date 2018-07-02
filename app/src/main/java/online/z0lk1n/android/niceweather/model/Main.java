@@ -1,62 +1,44 @@
 package online.z0lk1n.android.niceweather.model;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Main {
+public final class Main {
     @SerializedName("temp")
-    @Expose
-    private double temp;
+    private final double temp;
     @SerializedName("pressure")
-    @Expose
-    private int pressure;
+    private final int pressure;
     @SerializedName("humidity")
-    @Expose
-    private int humidity;
+    private final int humidity;
     @SerializedName("temp_min")
-    @Expose
-    private double temp_min;
+    private final double temp_min;
     @SerializedName("temp_max")
-    @Expose
-    private double temp_max;
+    private final double temp_max;
+
+    public Main(double temp, int pressure, int humidity, double temp_min, double temp_max) {
+        this.temp = temp;
+        this.pressure = pressure;
+        this.humidity = humidity;
+        this.temp_min = temp_min;
+        this.temp_max = temp_max;
+    }
 
     public double getTemp() {
         return temp;
-    }
-
-    public void setTemp(double temp) {
-        this.temp = temp;
     }
 
     public int getPressure() {
         return pressure;
     }
 
-    public void setPressure(int pressure) {
-        this.pressure = pressure;
-    }
-
     public int getHumidity() {
         return humidity;
-    }
-
-    public void setHumidity(int humidity) {
-        this.humidity = humidity;
     }
 
     public double getTemp_min() {
         return temp_min;
     }
 
-    public void setTemp_min(double temp_min) {
-        this.temp_min = temp_min;
-    }
-
     public double getTemp_max() {
         return temp_max;
-    }
-
-    public void setTemp_max(double temp_max) {
-        this.temp_max = temp_max;
     }
 }

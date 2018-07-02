@@ -1,29 +1,23 @@
 package online.z0lk1n.android.niceweather.model;
 
-import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Wind {
+public final class Wind {
     @SerializedName("speed")
-    @Expose
-    private double speed;
+    private final double speed;
     @SerializedName("deg")
-    @Expose
-    private double deg;
+    private final double deg;
+
+    public Wind(double speed, double deg) {
+        this.speed = speed;
+        this.deg = deg;
+    }
 
     public double getSpeed() {
         return speed;
     }
 
-    public void setSpeed(double speed) {
-        this.speed = speed;
-    }
-
     public double getDeg() {
         return deg;
-    }
-
-    public void setDeg(double deg) {
-        this.deg = deg;
     }
 }

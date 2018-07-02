@@ -2,7 +2,7 @@ package online.z0lk1n.android.niceweather.model.WeatherIcon;
 
 import online.z0lk1n.android.niceweather.R;
 
-public class WindDirection {
+public final class WindDirection {
     private final static int[] windDirection = new int[8];
 
     static {

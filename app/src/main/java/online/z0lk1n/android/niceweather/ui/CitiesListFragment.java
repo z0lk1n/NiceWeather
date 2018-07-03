@@ -39,7 +39,6 @@ public class CitiesListFragment extends Fragment implements View.OnClickListener
         recyclerView = fragmentView.findViewById(R.id.recycler_view);
         FloatingActionButton fab = fragmentView.findViewById(R.id.fab_add_city);
         fab.setOnClickListener(this);
-//        registerForContextMenu(recyclerView);
         setupToolbar();
         return fragmentView;
     }
@@ -85,11 +84,6 @@ public class CitiesListFragment extends Fragment implements View.OnClickListener
         this.citiesList.setCity(city);
     }
 
-//    public void removeCity(int city) {
-//        this.citiesList.removeCity(city);
-//    }
-
-
     @Override
     public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
         super.onCreateOptionsMenu(menu, inflater);
@@ -106,18 +100,6 @@ public class CitiesListFragment extends Fragment implements View.OnClickListener
                 return super.onOptionsItemSelected(item);
         }
     }
-
-//    @Override
-//    public boolean onContextItemSelected(MenuItem item) {
-//        switch (item.getItemId()) {
-//            case R.id.remove_city:
-//                removeCity(currentPosition);
-//                adapter.notifyDataSetChanged();
-//                return true;
-//            default:
-//                return super.onContextItemSelected(item);
-//        }
-//    }
 
     public void setupToolbar() {
         setHasOptionsMenu(true);

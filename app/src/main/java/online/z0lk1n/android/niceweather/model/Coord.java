@@ -4,20 +4,20 @@ import com.google.gson.annotations.SerializedName;
 
 public final class Coord {
     @SerializedName("lon")
-    private final double lon;
+    private final float lon;
     @SerializedName("lat")
-    private final double lat;
+    private final float lat;
 
-    public Coord(double lon, double lat) {
+    public Coord(float lon, float lat) {
         this.lon = lon;
         this.lat = lat;
     }
 
-    public double getLon() {
+    public float getLon() {
         return lon;
     }
 
-    public double getLat() {
+    public float getLat() {
         return lat;
     }
 }

@@ -7,6 +7,8 @@ import android.content.Context;
 
 @Database(entities = {CitiesEntity.class}, version = 1)
 public abstract class CitiesDatabase extends RoomDatabase {
+    private static final String DATABASE = "cities_database";
+
     public abstract CitiesDAO citiesDAO();
 
     private static CitiesDatabase instance;
@@ -16,7 +18,8 @@ public abstract class CitiesDatabase extends RoomDatabase {
             synchronized (CitiesDatabase.class) {
                 if (instance == null) {
                     instance = Room.databaseBuilder(context.getApplicationContext(),
-                            CitiesDatabase.class, "cities_database")
+                            CitiesDatabase.class, DATABASE)
+                            .allowMainThreadQueries()
                             .build();
                 }
             }

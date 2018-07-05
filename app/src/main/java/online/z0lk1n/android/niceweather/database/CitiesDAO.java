@@ -1,5 +1,6 @@
 package online.z0lk1n.android.niceweather.database;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -12,7 +13,7 @@ import java.util.List;
 @Dao
 public interface CitiesDAO {
     @Query("SELECT * FROM CitiesEntity")
-    List<CitiesEntity> getAll();
+    LiveData<List<CitiesEntity>> getAll();
 
 //    @Query("SELECT * FROM CitiesEntity WHERE name LIKE :name")
 //    CitiesEntity getLocationByName(String name);

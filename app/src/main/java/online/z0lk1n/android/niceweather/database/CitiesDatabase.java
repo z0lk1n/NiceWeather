@@ -6,18 +6,18 @@ import android.arch.persistence.room.RoomDatabase;
 import android.content.Context;
 
 @Database(entities = {CitiesEntity.class}, version = 1)
-public abstract class CitiesDatabase extends RoomDatabase{
+public abstract class CitiesDatabase extends RoomDatabase {
     public abstract CitiesDAO citiesDAO();
 
     private static CitiesDatabase instance;
 
-    static CitiesDatabase getDatabase(final Context context)    {
-        if(instance == null)    {
+    static CitiesDatabase getDatabase(final Context context) {
+        if (instance == null) {
             synchronized (CitiesDatabase.class) {
-                if(instance == null)    {
-                    instance = Room.databaseBuilder(context.getApplicationContext()),
-                    CitiesDatabase.class, "cities_database")
-                    .build();
+                if (instance == null) {
+                    instance = Room.databaseBuilder(context.getApplicationContext(),
+                            CitiesDatabase.class, "cities_database")
+                            .build();
                 }
             }
         }

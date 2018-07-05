@@ -14,8 +14,11 @@ public interface CitiesDAO {
     @Query("SELECT * FROM CitiesEntity")
     List<CitiesEntity> getAll();
 
-    @Query("SELECT * FROM CitiesEntity WHERE name LIKE :name")
-    CitiesEntity getLocationByName(String name);
+//    @Query("SELECT * FROM CitiesEntity WHERE name LIKE :name")
+//    CitiesEntity getLocationByName(String name);
+
+    @Query("DELETE FROM CitiesEntity")
+    void deleteAll();
 
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(CitiesEntity entity);

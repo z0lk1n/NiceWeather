@@ -1,0 +1,63 @@
+{
+  "project_info": {
+    "project_number": "370117561446",
+    "firebase_url": "https://niceweather-a74f9.firebaseio.com",
+    "project_id": "niceweather-a74f9",
+    "storage_bucket": "niceweather-a74f9.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:370117561446:android:458fab0b4bb54e0c",
+        "android_client_info": {
+          "package_name": "online.z0lk1n.android.niceweather"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "370117561446-mo8rt92n6ago3belvaipqkm1rgvujlhq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "online.z0lk1n.android.niceweather",
+            "certificate_hash": "ab59b219ddd3900ccbc4f07add401282128a94c7"
+          }
+        },
+        {
+          "client_id": "370117561446-n57nuo7rhfuogq3f8cv3v3uv3tuv33mk.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "online.z0lk1n.android.niceweather",
+            "certificate_hash": "7c6563e7dc1a5d4ef0c373959557e80d5b48da26"
+          }
+        },
+        {
+          "client_id": "370117561446-kr0fge7n99fdnckt3dlraknm4p7u7s18.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBz7YvxSKzwlsROhuDXRdN8SuhhnSZr7QU"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "370117561446-kr0fge7n99fdnckt3dlraknm4p7u7s18.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
